@@ -104,7 +104,7 @@ export class RegisterComponent {
   }
 
   get passwordStrong() {
-    return /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/.test(this.password);
+    return /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/.test(this.password);
   }
 
   get passwordsMatch() {
