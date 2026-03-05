@@ -1,0 +1,138 @@
+<h2 class="page-title">Campaign Engine</h2>
+
+<!-- ================= CREATE ================= -->
+
+<div class="section">
+
+  <h3>Create Campaign</h3>
+
+  <div class="dataset-grid">
+
+    <div class="dataset-card" *ngFor="let d of datasets">
+
+      <div class="dataset-name">
+        {{d.name}}
+      </div>
+
+      <button class="btn-primary" (click)="create(d)">
+        Create Campaign
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ================= HISTORY ================= -->
+
+<div class="section">
+
+  <h3>Campaign History</h3>
+
+  <div class="table-wrapper">
+    <table class="pro-table">
+      <thead>
+        <tr>
+          <th>Campaign Name</th>
+          <th>Type</th>
+          <th>Status</th>
+          <th>Date & Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="!campaignHistory.length">
+          <td colspan="4"
+            style="text-align: center; padding: 30px; color: #666; background: transparent; border: none;">No campaign
+            history yet.</td>
+        </tr>
+        <tr *ngFor="let h of campaignHistory">
+          <td>{{h.name}}</td>
+          <td>
+            <span class="type-badge" [ngClass]="h.type">{{h.type | uppercase}}</span>
+          </td>
+          <td>
+            <span class="status-badge" [ngClass]="h.status">{{h.status}}</span>
+          </td>
+          <td>{{h.date | date:'short'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ================= QUEUE ================= -->
+
+<div class="section">
+
+  <h3>Campaign Queue</h3>
+
+  <div *ngIf="!campaigns.length" class="empty">
+    No campaigns yet.
+  </div>
+
+  <div class="campaign-grid">
+
+    <div class="campaign-card" *ngFor="let c of campaigns">
+
+      <!-- header -->
+
+      <div class="campaign-header">
+
+        <div class="title">
+          {{c.title}}
+        </div>
+
+        <span class="status" [ngClass]="c.status">
+
+          {{c.status}}
+
+        </span>
+
+      </div>
+
+      <!-- progress -->
+
+      <div class="progress-bar">
+
+        <div class="progress-fill" [style.width.%]="c.progress">
+
+        </div>
+
+      </div>
+
+      <div class="progress-text">
+
+        {{c.delivered}} / {{c.total}}
+        ({{c.progress}}%)
+
+      </div>
+
+      <!-- controls -->
+
+      <div class="controls">
+
+        <button class="btn" (click)="start(c.id)">
+          Start
+        </button>
+
+        <button class="btn" (click)="pause(c.id)">
+          Pause
+        </button>
+
+        <button class="btn" (click)="resume(c.id)">
+          Resume
+        </button>
+
+        <button class="btn-danger" (click)="cancel(c.id)">
+          Cancel
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

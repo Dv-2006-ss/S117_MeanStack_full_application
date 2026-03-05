@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Enterprise SaaS Split Register Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#5b13ec",
+                "background-light": "#f6f6f8",
+                "background-dark": "#161022",
+              },
+              fontFamily: {
+                "display": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex flex-col min-h-screen w-full overflow-hidden">
+<div class="flex-1 flex flex-col md:flex-row">
+<div class="hidden md:flex w-1/2 bg-background-dark relative flex-col justify-between p-12 overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-purple-900/40 opacity-50"></div>
+<div class="absolute -top-24 -left-24 w-96 h-96 bg-primary/20 rounded-full blur-[100px]"></div>
+<div class="absolute -bottom-24 -right-24 w-96 h-96 bg-purple-600/20 rounded-full blur-[100px]"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-12">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white">bolt</span>
+</div>
+<span class="text-white text-2xl font-bold tracking-tight">NexusFlow</span>
+</div>
+<h1 class="text-white text-5xl font-bold leading-tight mb-8">Join the Future of Enterprise Automation</h1>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<div class="w-6 h-6 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">check</span>
+</div>
+<p class="text-slate-300 text-lg">Instant Automation</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-6 h-6 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">check</span>
+</div>
+<p class="text-slate-300 text-lg">Scalable Workflows</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-6 h-6 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">check</span>
+</div>
+<p class="text-slate-300 text-lg">Deep Analytics</p>
+</div>
+</div>
+</div>
+<div class="relative z-10 text-slate-400 text-sm">
+                    © 2024 NexusFlow Inc. Trusted by Fortune 500 companies.
+                </div>
+</div>
+<div class="flex-1 flex flex-col bg-white dark:bg-background-dark min-h-screen">
+<div class="flex items-center justify-between p-6">
+<div class="md:hidden flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-lg">bolt</span>
+</div>
+</div>
+<div class="ml-auto">
+<p class="text-slate-500 dark:text-slate-400 text-sm">
+                            Already have an account? 
+                            <a class="text-primary font-bold ml-1 hover:underline" href="#">Sign In</a>
+</p>
+</div>
+</div>
+<div class="flex-1 flex flex-col justify-center px-6 md:px-16 lg:px-24 max-w-2xl mx-auto w-full pb-12">
+<div class="mb-10">
+<h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Create your account</h2>
+<p class="text-slate-500 dark:text-slate-400">Start your 14-day free trial. No credit card required.</p>
+</div>
+<form class="space-y-5">
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Full Name</label>
+<div class="relative">
+<input class="w-full h-14 px-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-slate-900 dark:text-white" placeholder="John Doe" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Work Email</label>
+<div class="relative">
+<input class="w-full h-14 px-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-slate-900 dark:text-white" placeholder="name@company.com" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Create Password</label>
+<div class="relative">
+<input class="w-full h-14 px-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-slate-900 dark:text-white" placeholder="Min. 8 characters" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<div class="pt-4">
+<button class="w-full h-14 bg-primary hover:bg-primary/90 text-white font-bold rounded-xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+                                Create Your Account
+                                <span class="material-symbols-outlined text-xl">arrow_forward</span>
+</button>
+</div>
+</form>
+<div class="relative my-10">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-slate-200 dark:border-slate-800"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="px-4 bg-white dark:bg-background-dark text-slate-500">Or sign up with</span>
+</div>
+</div>
+<button class="w-full h-14 border border-slate-200 dark:border-slate-800 rounded-xl flex items-center justify-center gap-3 hover:bg-slate-50 dark:hover:bg-slate-900 transition-all text-slate-700 dark:text-slate-300 font-medium">
+<img alt="" class="w-5 h-5" data-alt="Google logo icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeIiU6UPf3W7sip1nHnKb-YVzswzy66e97C_wcxmk8TW96yM81FI3aD-3lYRrjgYeRAETNCnRZWq_6N2oJ-8utQyKNicQI4lNuscKdgpv-RxqDqOIMaY3G7fwZTM_B2kugovoUWY2NYtD7Z5A53eJvjFU2jBWJi5OFOI4WFQFrSmxDZAXym9oLh_CRrEk7rYF3HMwZuiUQgnYbB6Nx7ecbAtO7NVixiNcChb1dw80CWfd0TK8e5LX87FyGGlQyxz5npRmcowJ1cSBJ"/>
+                        Sign up with Google
+                    </button>
+<p class="mt-8 text-center text-xs text-slate-400 leading-relaxed">
+                        By clicking "Create Your Account", you agree to our 
+                        <a class="underline text-slate-500" href="#">Terms of Service</a> and 
+                        <a class="underline text-slate-500" href="#">Privacy Policy</a>.
+                    </p>
+</div>
+</div>
+</div>
+<div class="md:hidden block">
+<div class="p-6 bg-primary/5 border-t border-slate-100 dark:border-slate-800">
+<div class="flex overflow-x-auto gap-4 no-scrollbar pb-2">
+<div class="flex-shrink-0 flex items-center gap-2 bg-white dark:bg-slate-900 p-3 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-primary">bolt</span>
+<span class="text-sm font-medium whitespace-nowrap">Instant Automation</span>
+</div>
+<div class="flex-shrink-0 flex items-center gap-2 bg-white dark:bg-slate-900 p-3 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-primary">layers</span>
+<span class="text-sm font-medium whitespace-nowrap">Scalable Workflows</span>
+</div>
+<div class="flex-shrink-0 flex items-center gap-2 bg-white dark:bg-slate-900 p-3 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-primary">bar_chart</span>
+<span class="text-sm font-medium whitespace-nowrap">Deep Analytics</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

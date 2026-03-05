@@ -1,0 +1,132 @@
+<div class="builder-container fade-in">
+
+    <div class="header glass-effect">
+        <h2>📱 Premium SMS Builder</h2>
+        <div class="actions">
+            <button class="btn-secondary" (click)="goBack()">✕ Cancel</button>
+            <button class="btn-danger highlight neon-glow-danger" *ngIf="isEditMode" (click)="deleteCampaign()">🗑
+                Delete</button>
+            <button class="btn-primary highlight neon-glow" (click)="confirmFinalSms()">{{ isEditMode ? '✔ Save Now' :
+                '🚀 Launch Now' }}</button>
+        </div>
+    </div>
+
+    <div class="main-workspace">
+
+        <div class="editor-panel glass-effect">
+            <h3>Compose Message</h3>
+            <p class="subtitle">Personalize your message with template variables</p>
+
+            <div class="tools-grid">
+                <button class="tool-btn" (click)="insertVariable('{{name}}')">
+                    <span class="icon">👤</span> Insert Name
+                </button>
+                <button class="tool-btn" (click)="insertVariable('{{email}}')">
+                    <span class="icon">✉️</span> Insert Email
+                </button>
+                <button class="tool-btn" (click)="insertVariable('{{date}}')">
+                    <span class="icon">📅</span> Insert Date
+                </button>
+                <button class="tool-btn" (click)="insertLink()">
+                    <span class="icon">🔗</span> Insert Link
+                </button>
+                <button class="tool-btn" (click)="insertOptOut()">
+                    <span class="icon">🛑</span> Opt-Out Option
+                </button>
+            </div>
+
+            <div class="schedule-panel glass-effect"
+                style="margin-top: 1.5rem; padding: 1.25rem; border-radius: 12px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05);">
+                <label style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                    <span class="material-symbols-outlined material-icon"
+                        style="color: #60a5fa; font-size: 18px;">schedule</span>
+                    Delivery Schedule
+                </label>
+
+                <div class="segment-control"
+                    style="display: flex; background: rgba(0,0,0,0.3); border-radius: 8px; padding: 4px; margin-bottom: 1rem; border: 1px solid rgba(255,255,255,0.05);">
+                    <button class="segment-btn"
+                        [style.background]="scheduleMode === 'immediate' ? 'rgba(255,255,255,0.1)' : 'transparent'"
+                        [style.fontWeight]="scheduleMode === 'immediate' ? '600' : '400'"
+                        (click)="scheduleMode = 'immediate'"
+                        style="flex:1; padding: 0.6rem; border:none; border-radius: 6px; color: white; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
+                        ⚡ Send Immediately
+                    </button>
+                    <button class="segment-btn"
+                        [style.background]="scheduleMode === 'later' ? 'rgba(255,255,255,0.1)' : 'transparent'"
+                        [style.fontWeight]="scheduleMode === 'later' ? '600' : '400'" (click)="scheduleMode = 'later'"
+                        style="flex:1; padding: 0.6rem; border:none; border-radius: 6px; color: white; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
+                        🕒 Schedule for later
+                    </button>
+                </div>
+
+                <div class="schedule-inputs" *ngIf="scheduleMode === 'later'" style="animation: fadeIn 0.3s ease;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="input-group">
+                            <label style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">Date</label>
+                            <input type="date" [(ngModel)]="scheduledDateStr" class="stitch-input"
+                                style="width: 100%; border:1px solid rgba(255,255,255,0.1); padding: 0.6rem; border-radius:8px; background:rgba(0,0,0,0.4); color:white; color-scheme: dark; font-family: inherit;" />
+                        </div>
+                        <div class="input-group">
+                            <label style="font-size: 0.8rem; color: #94a3b8; font-weight: normal;">Time</label>
+                            <input type="time" [(ngModel)]="scheduledTimeStr" class="stitch-input"
+                                style="width: 100%; border:1px solid rgba(255,255,255,0.1); padding: 0.6rem; border-radius:8px; background:rgba(0,0,0,0.4); color:white; color-scheme: dark; font-family: inherit;" />
+                        </div>
+                    </div>
+                    <div
+                        style="font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 0.8rem; display: flex; align-items: center; gap: 0.3rem;">
+                        <span class="material-symbols-outlined material-icon" style="font-size: 14px;">public</span>
+                        Timezone: {{ userTimezone }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group" style="margin-top: 1.5rem;">
+                <label>Message Content</label>
+                <textarea [(ngModel)]="smsContent" placeholder="Hi [Name], we have a special offer for you!" rows="6"
+                    class="sms-textarea"></textarea>
+
+                <div class="char-count" [class.warning]="smsContent.length > 160">
+                    {{ smsContent.length }} / 160 characters {{ smsContent.length > 160 ? '(2+ SMS)' : '(1 SMS)' }}
+                </div>
+            </div>
+        </div>
+
+        <div class="preview-panel">
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <div class="phone-header android-header">
+                        <span class="material-symbols-outlined"
+                            style="font-size: 1.2rem; cursor: pointer;">arrow_back_ios_new</span>
+                        <div class="contact-avatar">
+                            <span class="material-symbols-outlined">person</span>
+                        </div>
+                        <div class="contact-name">AX-i{{companyName}}-S</div>
+                        <span class="material-symbols-outlined"
+                            style="margin-left: auto; font-size: 1.2rem; cursor: pointer;">delete</span>
+                    </div>
+
+                    <div class="chat-area android-chat">
+                        <div class="date-divider">Friday, 27 February</div>
+
+                        <div class="message-row" *ngIf="smsContent">
+                            <div class="message-bubble android-bubble">
+                                <span class="sms-text">{{ smsContent }}</span>
+                                <div class="sms-suffix">- {{ companyName }}</div>
+                            </div>
+                            <span class="message-time">9:10 am</span>
+                        </div>
+
+                        <div class="message-row" *ngIf="!smsContent">
+                            <div class="message-bubble android-bubble placeholder">
+                                Your message preview will appear here...
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

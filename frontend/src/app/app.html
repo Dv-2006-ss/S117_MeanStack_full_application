@@ -1,0 +1,12 @@
+<div class="app-layout">
+  <app-navbar class="app-header" *ngIf="isLogged()"></app-navbar>
+
+  <div class="app-body">
+    <app-sidebar *ngIf="isLogged()"></app-sidebar>
+    <main class="app-main custom-scrollbar">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+</div>
+<app-global-toast></app-global-toast>

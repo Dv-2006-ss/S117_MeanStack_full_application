@@ -1,0 +1,18 @@
+{
+    "name": "velox-marketing-automation",
+    "version": "1.0.0",
+    "description": "Velox Marketing Automation Platform",
+    "main": "bckend/server.js",
+    "scripts": {
+        "start": "node bckend/server.js",
+        "build": "npm install --prefix bckend && npm install --prefix frontend && npm run build --prefix frontend",
+        "install-all": "npm install --prefix bckend && npm install --prefix frontend",
+        "dev": "concurrently \"npm run dev --prefix bckend\" \"npm start --prefix frontend\""
+    },
+    "dependencies": {
+        "concurrently": "^8.2.2"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    }
+}

@@ -1,0 +1,298 @@
+<div class="page-container fade-in">
+
+  <!-- ================= HEADER AREA ================= -->
+  <div class="header-section">
+    <div>
+      <h2 class="page-title">Customer Data Management</h2>
+      <p class="page-subtitle">Import, synchronize, and manage your centralized customer datasets.</p>
+    </div>
+    <div class="header-actions">
+      <label class="btn-secondary file-upload-btn">
+        <span class="material-icon">upload_file</span>
+        {{ selectedFileName || 'Choose CSV File' }}
+        <input type="file" (change)="onFileSelect($event)" hidden>
+      </label>
+      <button class="btn-primary" (click)="importDataset()">
+        <span class="material-icon">cloud_upload</span> Import Data
+      </button>
+      <button class="btn-secondary" style="border-color: rgba(16, 185, 129, 0.5); color: #34d399;"
+        (click)="showSavePopup=true" *ngIf="previewData.length > 0 && !isPersistedDataset">
+        <span class="material-icon">save</span> Save Dataset
+      </button>
+    </div>
+  </div>
+
+  <div class="active-dataset-bar" *ngIf="loadedDatasetName">
+    <div class="status-dot"></div>
+    <span class="status-text">Currently Loaded: <strong>{{ loadedDatasetName }}</strong></span>
+    <button class="btn-text-primary ml-auto" (click)="syncDatasetManually()">Save/Sync Changes</button>
+  </div>
+
+  <!-- ================= MAIN GRID ================= -->
+  <div class="main-grid">
+
+    <!-- DATA TABLE SECTION -->
+    <div class="table-card">
+      <div class="card-header">
+        <div class="header-titles">
+          <h3>Dataset Editor</h3>
+          <p>Preview and edit your customer records</p>
+        </div>
+        <div class="card-actions">
+          <button class="btn-ghost" (click)="openEditPopup()">
+            <span class="material-icon">edit</span> Manual Edit
+          </button>
+          <div class="divider-vertical"></div>
+          <button class="btn-ghost" (click)="exportCSV()">CSV</button>
+          <button class="btn-ghost" (click)="exportExcel()">Excel</button>
+        </div>
+      </div>
+
+      <div class="empty-state" *ngIf="previewData.length === 0">
+        <div class="empty-icon"><span class="material-symbols-outlined" style="font-size: 3rem;">folder</span></div>
+        <h4>No Data Loaded</h4>
+        <p>Import a CSV or load a saved dataset to view records.</p>
+      </div>
+
+      <div class="table-container" *ngIf="previewData.length > 0">
+        <table class="saas-table header-table">
+          <thead>
+            <tr>
+              <th style="width: 80px">ID</th>
+              <th>Full Name</th>
+              <th>Email Address</th>
+              <th style="width: 100px">Age</th>
+              <th>Phone Number</th>
+              <th style="width: 100px; text-align: right">Status</th>
+            </tr>
+          </thead>
+        </table>
+
+        <cdk-virtual-scroll-viewport itemSize="56" class="custom-scrollbar" style="height: 400px;">
+          <table class="saas-table body-table">
+            <tbody>
+              <tr *cdkVirtualFor="let c of previewData; let i = index" class="group">
+                <td style="width: 80px" class="id-cell">#{{ i + 1 }}</td>
+                <td class="name-cell">{{c.name || '—'}}</td>
+                <td class="email-cell">{{c.email || '—'}}</td>
+                <td style="width: 100px">{{c.age || '—'}}</td>
+                <td class="phone-cell">{{c.phone || '—'}}</td>
+                <td style="width: 100px; text-align: right">
+                  <span class="status-badge" [class.active]="c.email">Valid</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </cdk-virtual-scroll-viewport>
+
+        <div class="table-footer">
+          <div class="pagination">
+            <button class="btn-page" (click)="prevPage()">Previous</button>
+            <span class="page-info">Page {{page}}</span>
+            <button class="btn-page" (click)="nextPage()">Next</button>
+          </div>
+        </div>
+      </div>
+    </div> <!-- /Table Card -->
+
+    <!-- SIDEBAR STATS & SAVED DATASETS -->
+    <div class="sidebar-cards">
+      <div class="card action-flow-card">
+        <div class="card-icon"><span class="material-symbols-outlined tip-icon"
+            style="font-size: 2.5rem; color: var(--primary);">rocket_launch</span></div>
+        <h3>Campaign Activation</h3>
+        <p>Push this active customer dataset directly into a new email or SMS campaign pipeline.</p>
+        <button class="btn-primary w-full highlight" (click)="showMergePopup=true">
+          Initialize Campaign
+        </button>
+      </div>
+
+      <div class="card saved-datasets-card">
+        <h3>Saved Datasets</h3>
+        <div class="dataset-list" *ngIf="datasets && datasets.length > 0">
+          <!-- Double Click to Load, Single click to prepare Delete -->
+          <div class="dataset-item" *ngFor="let d of datasets" (dblclick)="selectDataset(d)"
+            title="Double-click to load" style="cursor: pointer; position: relative;">
+
+            <div class="d-info">
+              <span class="material-icon">database</span>
+              <span class="d-name">{{ d.name }}</span>
+            </div>
+
+            <!-- Single click trash icon -->
+            <button class="btn-ghost" style="padding: 4px; display: flex;"
+              (click)="datasetToDelete = d; showDeleteDatasetConfirm = true; $event.stopPropagation()">
+              <span class="material-icon" style="font-size: 1rem; color: #ef4444;">delete</span>
+            </button>
+          </div>
+        </div>
+        <p class="empty-text" *ngIf="!datasets || datasets.length === 0">No saved datasets.</p>
+      </div>
+    </div> <!-- /Sidebar Cards -->
+
+  </div> <!-- /Main Grid -->
+
+  <!-- ================= POPUPS / MODALS ================= -->
+
+  <!-- SAVE DATASET -->
+  <div class="pro-overlay" *ngIf="showSavePopup">
+    <div class="pro-window">
+      <div class="pro-titlebar">
+        <h3>Save Dataset</h3>
+        <button class="btn-close" (click)="showSavePopup=false">✕</button>
+      </div>
+      <div class="pro-content">
+        <div class="input-group">
+          <label>Dataset Identifier</label>
+          <input placeholder="e.g. Q4 Marketing Leads" [(ngModel)]="datasetNameInput">
+        </div>
+        <div class="pro-actions">
+          <button class="btn-secondary" (click)="showSavePopup=false">Cancel</button>
+          <button class="btn-primary" (click)="saveDataset(); showSavePopup=false">Save Dataset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDIT DATASET (MANUAL ID) -->
+  <div class="pro-overlay" *ngIf="showEditPopup">
+    <div class="pro-window w-sm">
+      <div class="pro-titlebar">
+        <h3>Edit Database Record</h3>
+        <button class="btn-close" (click)="showEditPopup=false">✕</button>
+      </div>
+      <div class="pro-content">
+        <div class="input-group">
+          <label>Target Row ID</label>
+          <input type="number" placeholder="Enter record ID number" [(ngModel)]="editIdInput">
+        </div>
+        <button class="btn-primary w-full" (click)="confirmEditId()">Locate Record</button>
+        <hr class="modal-hr">
+        <button class="btn-danger w-full outline" (click)="deleteEntireDatasetPrompt()">
+          Delete Entire Dataset
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDIT ACTION (Options / Edit Form) -->
+  <div class="pro-overlay" *ngIf="showActionPopup">
+    <div class="pro-window">
+      <div class="pro-titlebar">
+        <h3>{{ !isEditing ? 'Row Actions' : 'Update Record' }}</h3>
+        <button class="btn-close" (click)="closePopup()">✕</button>
+      </div>
+
+      <!-- Options -->
+      <div class="pro-content" *ngIf="!isEditing">
+        <button class="btn-secondary w-full" style="justify-content: flex-start;" (click)="changeInfo()">
+          <span class="material-icon text-primary">edit</span> Modify Cell Information
+        </button>
+        <button class="btn-danger w-full outline" style="justify-content: flex-start;" (click)="confirmDelete()">
+          <span class="material-icon">delete</span> Purge Record
+        </button>
+      </div>
+
+      <!-- Edit Form -->
+      <div class="pro-content" *ngIf="isEditing">
+        <div class="grid-2">
+          <div class="input-group">
+            <label>Full Name</label>
+            <input [class.input-error]="!editingRow?.name?.trim()" type="text" [(ngModel)]="editingRow.name">
+          </div>
+          <div class="input-group">
+            <label>Age</label>
+            <input type="number" [(ngModel)]="editingRow.age">
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Email Address</label>
+          <input
+            [class.input-error]="(!editingRow?.email?.trim()) || (editingRow?.email && !emailPattern.test(editingRow.email))"
+            type="email" [(ngModel)]="editingRow.email">
+        </div>
+        <div class="input-group">
+          <label>Phone Number</label>
+          <input [class.input-error]="(editingRow?.phone && !editingRow?.phone.toString().match('^[0-9]{10}$'))"
+            type="text" [(ngModel)]="editingRow.phone">
+        </div>
+        <div *ngIf="formError" class="error-msg">{{formError}}</div>
+        <div class="pro-actions">
+          <button class="btn-secondary" (click)="isEditing=false">Back</button>
+          <button class="btn-primary" (click)="saveChanges()">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DELETE ROW CONFIRM -->
+  <div class="pro-overlay" *ngIf="showDeleteConfirm">
+    <div class="pro-window w-sm">
+      <div class="pro-titlebar">
+        <h3>Confirm Deletion</h3>
+        <button class="btn-close" (click)="showDeleteConfirm=false">✕</button>
+      </div>
+      <div class="pro-content">
+        <p class="warning-text">Are you sure you want to permanently delete this row? This action cannot be reversed.
+        </p>
+        <div class="pro-actions">
+          <button class="btn-secondary" (click)="showDeleteConfirm=false">Cancel</button>
+          <button class="btn-danger" (click)="deleteRow()">Delete Record</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DELETE DATASET CONFIRM -->
+  <div class="pro-overlay" *ngIf="showDeleteDatasetConfirm">
+    <div class="pro-window w-sm">
+      <div class="pro-titlebar">
+        <h3 class="text-danger">Purge Dataset</h3>
+        <button class="btn-close" (click)="showDeleteDatasetConfirm=false">✕</button>
+      </div>
+      <div class="pro-content">
+        <p class="warning-text">Permanently delete <strong>{{ datasetToDelete?.name }}</strong> from your workspace?</p>
+        <div class="pro-actions">
+          <button class="btn-secondary" (click)="showDeleteDatasetConfirm=false">Cancel</button>
+          <button class="btn-danger" (click)="confirmDatasetDelete()">Purge Dataset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SELECT DATASET FOR CAMPAIGN -->
+  <div class="pro-overlay" *ngIf="showMergePopup">
+    <div class="pro-window w-md">
+      <div class="pro-titlebar">
+        <h3>Select Campaign Dataset</h3>
+        <button class="btn-close" (click)="showMergePopup=false">✕</button>
+      </div>
+      <div class="pro-content">
+        <p class="page-subtitle">Choose which dataset to forward to the Campaign Engine:</p>
+        <div class="dataset-grid" *ngIf="datasets.length > 0">
+          <div class="dataset-card" *ngFor="let d of datasets">
+            <span class="d-title">{{ d.name }}</span>
+            <button class="btn-primary sm" (click)="useForCampaign(d)">Forward</button>
+          </div>
+        </div>
+        <div class="empty-state sm" *ngIf="datasets.length === 0">
+          <p>No saved datasets found in repository.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TOASTS ================= -->
+  <div *ngIf="undoRow" class="undo-toast fade-in">
+    <span>{{ undoAction === 'edit' ? 'Record modified' : 'Record deleted' }}</span>
+    <button class="btn-undo" (click)="undoDelete()">Undo ({{undoSeconds}}s)</button>
+  </div>
+
+  <!-- GLOBAL TOAST -->
+  <div *ngIf="showToast" class="pro-toast fade-in" [ngClass]="toastType">
+    <div class="toast-indicator"></div>
+    <div class="toast-icon">{{ toastType === 'success' ? '✔' : '⚠' }}</div>
+    <div class="toast-text">{{ toastMessage }}</div>
+  </div>
+
+</div>

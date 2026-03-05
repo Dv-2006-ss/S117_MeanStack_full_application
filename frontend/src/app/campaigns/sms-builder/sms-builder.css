@@ -1,0 +1,486 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:host {
+    font-family: 'Outfit', 'Inter', sans-serif;
+    color: var(--text-main);
+    display: block;
+    min-height: 100vh;
+    background: var(--bg-app);
+    padding: 2.5rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Ambient Background Glow */
+:host::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, var(--primary-glow) 0%, transparent 60%);
+    filter: blur(120px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+:host::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    right: -10%;
+    width: 50%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 60%);
+    filter: blur(140px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.builder-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 1300px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* ================= HEADER ================= */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2.5rem;
+    background: rgba(31, 24, 48, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-xl);
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #ffffff 20%, var(--primary-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.actions {
+    display: flex;
+    gap: 1.2rem;
+}
+
+/* Buttons */
+button {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: none;
+    font-size: 0.95rem;
+    padding: 0.8rem 1.8rem;
+}
+
+.btn-primary.highlight {
+    background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+    color: white;
+    box-shadow: 0 8px 24px -6px var(--primary-glow), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary.highlight::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: skewX(-20deg);
+    transition: 0.5s;
+}
+
+.btn-primary.highlight:hover::before {
+    left: 150%;
+}
+
+.btn-primary.highlight:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 30px -8px var(--primary);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-main);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.btn-danger:hover {
+    background: #ef4444;
+    color: white;
+}
+
+.neon-glow-danger {
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+}
+
+.neon-glow-danger:hover {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+}
+
+/* ================= MAIN WORKSPACE ================= */
+.main-workspace {
+    display: grid;
+    grid-template-columns: 1fr 440px;
+    gap: 3rem;
+    align-items: start;
+}
+
+/* Glass Panels */
+.editor-panel {
+    background: rgba(31, 24, 48, 0.4);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+    border-radius: var(--radius-xl);
+    padding: 3rem;
+    position: relative;
+}
+
+.editor-panel h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: white;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin: 0 0 2.5rem 0;
+    font-weight: 400;
+}
+
+/* Tools Grid */
+.tools-grid {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.tool-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.4rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-full);
+    color: var(--text-main);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tool-btn .icon {
+    font-size: 1.1rem;
+    filter: hue-rotate(20deg) brightness(1.2);
+}
+
+.tool-btn:hover {
+    border-color: var(--primary-light);
+    color: white;
+    background: rgba(91, 19, 236, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(91, 19, 236, 0.2);
+}
+
+/* Inputs */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+}
+
+label {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-main);
+    letter-spacing: 0.02em;
+}
+
+.sms-textarea {
+    font-family: inherit;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    resize: none;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sms-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.sms-textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2), 0 0 0 4px rgba(91, 19, 236, 0.15);
+}
+
+.char-count {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    text-align: right;
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+/* ================= 3D PREVIEW PANEL ================= */
+.preview-panel {
+    display: flex;
+    justify-content: center;
+    perspective: 1000px;
+}
+
+.phone-mockup {
+    width: 340px;
+    height: 700px;
+    background: linear-gradient(145deg, #1f2235, #08090d);
+    border-radius: 50px;
+    padding: 12px;
+    box-shadow:
+        0 40px 80px -20px rgba(0, 0, 0, 0.6),
+        inset 0 2px 6px rgba(255, 255, 255, 0.15),
+        inset -2px -2px 10px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+    position: relative;
+    transform: rotateY(-5deg) rotateX(2deg);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-style: preserve-3d;
+}
+
+.phone-mockup:hover {
+    transform: rotateY(0deg) rotateX(0deg) translateY(-10px);
+}
+
+/* The Notch */
+.phone-mockup::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 32px;
+    background: #000;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    z-index: 20;
+    box-shadow: inset 0 -2px 5px rgba(255, 255, 255, 0.1);
+}
+
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    border-radius: 40px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+/* Screen reflection */
+.phone-screen::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.phone-header.android-header {
+    background: #000000;
+    padding: 3rem 1.2rem 1rem;
+    display: flex;
+    align-items: center;
+    border-bottom: none;
+    position: relative;
+    z-index: 5;
+    gap: 0.8rem;
+}
+
+.contact-avatar {
+    width: 36px;
+    height: 36px;
+    background: #444444;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-avatar span {
+    color: #aaaaaa;
+    font-size: 1.2rem;
+}
+
+.contact-name {
+    font-weight: 500;
+    font-size: 1.15rem;
+    color: #ffffff;
+    letter-spacing: 0.01em;
+}
+
+.chat-area.android-chat {
+    flex: 1;
+    padding: 0 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    position: relative;
+    z-index: 2;
+    background: #000000;
+}
+
+.date-divider {
+    text-align: center;
+    color: #888888;
+    font-size: 0.75rem;
+    margin: 1.5rem 0;
+    font-weight: 400;
+}
+
+.message-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    position: relative;
+    width: 100%;
+}
+
+.message-bubble.android-bubble {
+    padding: 1.1rem;
+    background: #494949;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    color: #ffffff;
+    line-height: 1.4;
+    max-width: 80%;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    box-shadow: none;
+    transform-origin: bottom left;
+    animation: popIn 0.3s ease-out forwards;
+    letter-spacing: -0.01em;
+}
+
+.message-bubble.android-bubble .sms-text {
+    display: inline;
+}
+
+.message-bubble.android-bubble .sms-suffix {
+    display: block;
+    margin-top: 0.3rem;
+}
+
+.message-bubble.android-bubble.placeholder {
+    color: rgba(255, 255, 255, 0.4);
+    background: #2a2a2a;
+    border: none;
+}
+
+.message-time {
+    color: #888888;
+    font-size: 0.65rem;
+    position: absolute;
+    bottom: 2px;
+    left: calc(80% + 5px);
+    white-space: nowrap;
+}
+
+/* ANIMATIONS */
+.fade-in {
+    animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9) translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}

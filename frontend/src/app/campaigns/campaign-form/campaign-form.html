@@ -1,0 +1,316 @@
+<div class="page-container fade-in" *ngIf="mode === 'list'">
+
+  <!-- Header -->
+  <div class="header-section">
+    <div>
+      <h2 class="page-title">Campaign Engine</h2>
+      <p class="page-subtitle">Target Dataset: <span style="color:var(--primary); font-weight: bold;">{{dataset?.name ||
+          'No Dataset Loaded'}}</span> • {{filteredData.length}} Recipients</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-secondary" (click)="goBack()">
+        <span class="material-symbols-outlined material-icon">arrow_back</span> Return to Datasets
+      </button>
+      <button class="btn-primary highlight" (click)="startCampaign()" [disabled]="!filteredData.length">
+        <span class="material-symbols-outlined material-icon">rocket_launch</span> Launch Campaign
+      </button>
+    </div>
+  </div>
+
+  <div class="main-grid" style="grid-template-columns: 1fr; margin-bottom: 2rem;">
+    <!-- Recipient Preview Area -->
+    <div class="table-card">
+      <div class="card-header">
+        <div class="header-titles">
+          <h3>Recipient Preview</h3>
+          <p>Verify exactly who will receive this campaign deployment.</p>
+        </div>
+        <div class="card-actions filters">
+          <input type="text" [(ngModel)]="searchText" (input)="applyFilters()" placeholder="Search name or email..."
+            style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); padding: 0.5rem; color: white; border-radius: 6px;">
+          <select [(ngModel)]="ageFilter" (change)="applyFilters()"
+            style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); padding: 0.5rem; color: white; border-radius: 6px;">
+            <option value="all">All Demographics</option>
+            <option value="18">18+</option>
+            <option value="25">25+</option>
+            <option value="30">30+</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="empty-state" *ngIf="!filteredData.length">
+        <div class="empty-icon">
+          <span class="material-symbols-outlined" style="font-size:3rem">{{ !dataset ? 'database' : 'group_off'
+            }}</span>
+        </div>
+        <h4>{{ !dataset ? 'No Dataset Selected' : 'No Matching Recipients' }}</h4>
+        <p>{{ !dataset ? 'Please return to the Datasets page to select a target audience before launching a campaign.' :
+          'Try adjusting your search criteria or demographic filters.' }}</p>
+      </div>
+
+      <div class="table-container" *ngIf="filteredData.length > 0">
+        <table class="saas-table header-table" style="table-layout: fixed; width: 100%;">
+          <thead>
+            <tr>
+              <th style="width: 10%">ID</th>
+              <th style="width: 25%">Full Name</th>
+              <th style="width: 30%">Email Address</th>
+              <th style="width: 10%">Age</th>
+              <th style="width: 25%">Phone Number</th>
+            </tr>
+          </thead>
+        </table>
+
+        <cdk-virtual-scroll-viewport itemSize="60" class="custom-scrollbar" style="height: 350px;">
+          <table class="saas-table body-table" style="table-layout: fixed; width: 100%;">
+            <tbody>
+              <tr *cdkVirtualFor="let c of filteredData; let i = index">
+                <td class="id-cell" style="width: 10%">#{{c.id || (i + 1)}}</td>
+                <td class="name-cell" style="width: 25%">{{c.name}}</td>
+                <td class="email-cell" style="width: 30%">{{c.email}}</td>
+                <td style="width: 10%">{{c.age}}</td>
+                <td class="id-cell" style="width: 25%">{{c.phone}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </cdk-virtual-scroll-viewport>
+      </div>
+    </div>
+  </div>
+
+  <!-- Campaign History Area -->
+  <div class="main-grid" style="grid-template-columns: 1fr;">
+    <div class="table-card">
+      <div class="card-header">
+        <div class="header-titles">
+          <h3>Campaign Pipeline History</h3>
+        </div>
+      </div>
+
+      <div class="empty-state" *ngIf="!campaignHistory.length">
+        <div class="empty-icon"><span class="material-symbols-outlined" style="font-size:3rem">history</span></div>
+        <h4>No Campaign History</h4>
+        <p>Deploy your first campaign to see execution logs tracking here.</p>
+      </div>
+
+      <div class="table-container" *ngIf="campaignHistory.length > 0">
+        <table class="saas-table history-table" style="table-layout: fixed; width: 100%;">
+          <thead>
+            <tr>
+              <th style="width: 25%">Campaign Identifier</th>
+              <th style="width: 15%">Protocol</th>
+              <th style="width: 15%">Status</th>
+              <th style="width: 20%">Timestamp</th>
+              <th style="width: 25%; text-align: right">Operations</th>
+            </tr>
+          </thead>
+        </table>
+
+        <div class="custom-scrollbar" style="max-height: 280px; overflow-y: auto;">
+          <table class="saas-table body-table history-table" style="table-layout: fixed; width: 100%;">
+            <tbody>
+              <tr *ngFor="let h of campaignHistory; let i = index">
+                <td class="name-cell" style="width: 25%">{{h.name}}</td>
+                <td style="width: 15%">
+                  <span *ngFor="let t of (h.types && h.types.length ? h.types : [h.type || 'email'])" class="tag-badge"
+                    [class.email]="t==='email'" [class.sms]="t==='sms'" (dblclick)="editCampaignProtocol(h, t)"
+                    title="Double-click to edit this template" style="cursor: pointer; margin-right: 4px;">
+                    {{t.toUpperCase()}}
+                  </span>
+                </td>
+                <td style="width: 15%">
+                  <span class="status-badge" [class.active]="h.status === 'Complete'"
+                    [class.scheduled]="h.status === 'Scheduled'">
+                    {{h.status === 'Complete' ? 'Completed' : h.status}}
+                  </span>
+                </td>
+                <td class="email-cell" style="width: 20%; font-size: 0.8rem">
+                  <div *ngIf="h.status === 'Scheduled'" style="color: #60a5fa; font-weight: bold;">
+                    ⏳ {{h.scheduledAt | date:'medium'}}
+                  </div>
+                  <div *ngIf="h.status !== 'Scheduled'">
+                    {{h.date | date:'medium'}}
+                  </div>
+                </td>
+                <td style="width: 25%; text-align: right">
+                  <button class="btn-ghost sm" (click)="viewLogs(h)" title="View Analytics">
+                    <span class="material-symbols-outlined material-icon">analytics</span>
+                  </button>
+                  <button class="btn-text-primary" style="padding: 0.2rem; margin: 0 0.5rem;"
+                    (click)="resendCampaign(h)" [disabled]="isAddDisabled(h)" title="Add Pipeline Option"
+                    [style.opacity]="isAddDisabled(h) ? 0.3 : 1">
+                    <span class="material-symbols-outlined material-icon">add_circle</span>
+                  </button>
+                  <button class="btn-ghost sm danger" (click)="deleteHistory(i)" title="Purge Pipeline">
+                    <span class="material-symbols-outlined material-icon">delete</span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Protocol Modal -->
+<div class="pro-overlay" *ngIf="showResendModal || showTypeModal">
+  <div class="pro-window w-sm">
+    <div class="pro-titlebar">
+      <h3>{{showResendModal ? 'Add Protocol' : 'Select Base Protocol'}}</h3>
+      <button class="btn-close" (click)="showResendModal=false; showTypeModal=false">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="pro-content">
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top:0;">{{showResendModal ? 'Expand this campaign
+        pipeline by adding another delivery layer.' : 'Choose the primary delivery mechanism for this campaign.'}}</p>
+
+      <button class="btn-secondary"
+        style="justify-content: flex-start; padding: 1rem; border-color: rgba(99,102,241,0.3); background: rgba(99,102,241,0.1); color: white;"
+        (click)="showResendModal ? confirmResendType('email') : selectCampaignType('email')">
+        <span class="material-symbols-outlined material-icon" style="color: #818cf8; margin-right: 0.5rem;">email</span>
+        Email Protocol
+      </button>
+
+      <button class="btn-secondary"
+        style="justify-content: flex-start; padding: 1rem; border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.1); color: white;"
+        (click)="showResendModal ? confirmResendType('sms') : selectCampaignType('sms')">
+        <span class="material-symbols-outlined material-icon"
+          style="color: #34d399; margin-right: 0.5rem;">smartphone</span>
+        SMS Protocol
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Naming Modal -->
+<div class="pro-overlay" *ngIf="showNameModal">
+  <div class="pro-window w-sm">
+    <div class="pro-titlebar">
+      <h3>Campaign Identifier</h3>
+      <button class="btn-close" (click)="showNameModal=false">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="pro-content">
+      <div class="input-group">
+        <label>Unique Campaign Name</label>
+        <input type="text" placeholder="e.g. Black Friday Substack" [(ngModel)]="campaignName"
+          (keyup.enter)="confirmCampaignName()">
+      </div>
+      <div class="pro-actions">
+        <button class="btn-secondary" (click)="showNameModal=false">Cancel</button>
+        <button class="btn-primary highlight" (click)="confirmCampaignName()">Initialize Workspace</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div class="pro-overlay" *ngIf="showDeleteModal">
+  <div class="pro-window w-sm">
+    <div class="pro-titlebar">
+      <h3 class="text-danger">Purge Pipeline</h3>
+      <button class="btn-close" (click)="showDeleteModal=false">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="pro-content">
+      <p class="warning-text" style="color: white; margin-top: 0;">Are you sure you want to permanently delete this
+        campaign history log? Analytics will be lost forever.</p>
+
+      <div class="pro-actions" style="margin-top: 1rem;">
+        <button class="btn-secondary" (click)="showDeleteModal=false">Cancel</button>
+        <button class="btn-danger outline" (click)="confirmDeleteHistory()">Accept Purge</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Logs Modal -->
+<div class="pro-overlay" *ngIf="showLogsModal">
+  <div class="pro-window w-md" style="max-height: 90vh;">
+    <div class="pro-titlebar">
+      <div>
+        <h3 style="display: flex; align-items: center; gap: 0.5rem;">
+          <span class="material-symbols-outlined" style="color: var(--primary);">monitoring</span>
+          Delivery Analytics
+        </h3>
+        <p style="color: var(--text-muted); font-size: 0.8rem; margin: 0.2rem 0 0;">Pipeline: <strong
+            style="color: var(--primary-light);">{{targetCampaignName}}</strong></p>
+      </div>
+      <button class="btn-close" (click)="showLogsModal=false">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <div class="pro-content" style="overflow-y: auto;">
+      <div style="text-align: center; margin-bottom: 1.5rem;" *ngIf="hasBothTypes">
+        <div
+          style="display: inline-flex; background: rgba(0,0,0,0.4); padding: 4px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+          <button
+            style="padding: 0.4rem 1rem; border-radius: 6px; font-size:0.85rem; font-weight: bold; border:none; cursor:pointer;"
+            [style.background]="activeLogType === 'email' ? 'var(--primary)' : 'transparent'"
+            [style.color]="activeLogType === 'email' ? 'white' : 'var(--text-muted)'"
+            (click)="switchLogTab('email')">Email Logs</button>
+          <button
+            style="padding: 0.4rem 1rem; border-radius: 6px; font-size:0.85rem; font-weight: bold; border:none; cursor:pointer;"
+            [style.background]="activeLogType === 'sms' ? 'var(--primary)' : 'transparent'"
+            [style.color]="activeLogType === 'sms' ? 'white' : 'var(--text-muted)'" (click)="switchLogTab('sms')">SMS
+            Logs</button>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+        <div
+          style="background: rgba(16,185,129,0.05); border: 1px solid rgba(16,185,129,0.2); border-radius: 12px; padding: 1.5rem; text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 900; color: #34d399; margin-bottom: 0.2rem;">{{successCount}}
+          </div>
+          <div
+            style="font-size: 0.65rem; font-weight: bold; text-transform: uppercase; color: #10b981; letter-spacing: 0.1em;">
+            Successful Deliveries</div>
+        </div>
+        <div
+          style="background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.2); border-radius: 12px; padding: 1.5rem; text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 900; color: #f87171; margin-bottom: 0.2rem;">{{failedCount}}</div>
+          <div
+            style="font-size: 0.65rem; font-weight: bold; text-transform: uppercase; color: #ef4444; letter-spacing: 0.1em;">
+            Failed Executions</div>
+        </div>
+      </div>
+
+      <div
+        style="background: rgba(0,0,0,0.3); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); overflow: hidden;"
+        *ngIf="displayedLogs.length">
+        <cdk-virtual-scroll-viewport itemSize="48" class="custom-scrollbar" style="height: 300px;">
+          <div *cdkVirtualFor="let l of displayedLogs"
+            style="display: flex; justify-content: space-between; align-items: center; padding: 0 1.25rem; height: 48px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <div
+              style="font-size: 0.75rem; font-family: monospace; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 60%;">
+              {{l.target}}</div>
+            <div *ngIf="l.status==='sent'"
+              style="font-size: 0.75rem; font-weight: bold; color: #34d399; display: flex; align-items: center; gap: 4px;">
+              <span class="material-symbols-outlined" style="font-size:14px;">check_circle</span> Sent
+            </div>
+            <div *ngIf="l.status!=='sent'"
+              style="font-size: 0.75rem; font-weight: bold; color: #f87171; display: flex; flex-direction: column; align-items: flex-end;">
+              <span style="display: flex; align-items: center; gap: 4px;"><span class="material-symbols-outlined"
+                  style="font-size:14px;">error</span> Failed</span>
+              <span style="font-size: 0.55rem; font-weight: normal; color: var(--text-muted);">{{l.error}}</span>
+            </div>
+          </div>
+        </cdk-virtual-scroll-viewport>
+      </div>
+
+      <div *ngIf="!displayedLogs.length"
+        style="padding: 4rem 1rem; text-align: center; border: 1px dashed rgba(255,255,255,0.1); border-radius: 8px; color: var(--text-muted);">
+        <span class="material-symbols-outlined"
+          style="font-size: 2rem; opacity: 0.5; margin-bottom: 0.5rem;">hourglass_empty</span>
+        <p style="font-size: 0.85rem; margin:0;">{{ hasBothTypes ? 'No telemetry data found for this protocol.' :
+          'Processing delivery logs in background...'}}</p>
+      </div>
+    </div>
+  </div>
+</div>

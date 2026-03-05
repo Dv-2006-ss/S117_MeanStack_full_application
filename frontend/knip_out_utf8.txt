@@ -1,0 +1,33 @@
+﻿[93m[4mUnused files[24m[39m (21)
+src/styles.css                                   
+src/app/app.config.ts                            
+src/app/app.css                                  
+src/environments/environment.prod.ts             
+src/app/core/live-engine.service.ts              
+src/app/dashboard/dashboard.css                  
+src/app/layout/global-toast.css                  
+src/app/settings/settings.css                    
+src/app/campaigns/campaign-form/campaign-form.css
+src/app/campaigns/campaign-list/campaign-list.css
+src/app/campaigns/email-builder/email-builder.css
+src/app/campaigns/sms-builder/sms-builder.css    
+src/app/auth/register/register.css               
+src/app/auth/login/login.css                     
+src/app/customers/customer-form/customer-form.css
+src/app/customers/customer-form/customer-form.ts 
+src/app/customers/customer-list/customer-list.css
+src/app/core/services/analytics.ts               
+src/app/core/services/auth.ts                    
+src/app/layout/navbar/navbar.css                 
+src/app/layout/sidebar/sidebar.css               
+[93m[4mUnused dependencies[24m[39m (4)
+@tailwindcss/vite  package.json:34:6
+@types/papaparse   package.json:35:6
+chart.js           package.json:36:6
+papaparse          package.json:37:6
+[93m[4mUnlisted dependencies[24m[39m (2)
+@angular-eslint/builder  angular.json        
+@eslint/js               eslint.config.js:2:8
+[93m[4mUnused exported types[24m[39m (1)
+ModalConfig  interface  src/app/core/services/toast.ts:11:18
+[33m[4mConfiguration hints[24m (1)[39m

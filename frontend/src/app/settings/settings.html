@@ -1,0 +1,202 @@
+<div class="settings-container section">
+    <div class="settings-header">
+        <h1>Account Settings</h1>
+        <p>Manage your professional profile and application preferences.</p>
+    </div>
+
+    <div class="settings-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="settings-sidebar">
+            <nav class="settings-nav">
+                <button [class.active]="activeTab === 'profile'" (click)="setTab('profile')">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"
+                        class="nav-icon">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    Professional Profile
+                </button>
+                <button [class.active]="activeTab === 'notifications'" (click)="setTab('notifications')">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"
+                        class="nav-icon">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    Communications
+                </button>
+                <button [class.active]="activeTab === 'security'" (click)="setTab('security')">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"
+                        class="nav-icon">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    Password & Security
+                </button>
+                <button [class.active]="activeTab === 'billing'" (click)="setTab('billing')">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"
+                        class="nav-icon">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                    Billing & Usage
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="settings-content">
+
+            <!-- PROFILE TAB -->
+            <div class="card settings-card" *ngIf="activeTab === 'profile'">
+                <h2>Public Profile</h2>
+                <p class="subtitle">This information will be displayed to your teammates and used for sender profiles.
+                </p>
+                <hr>
+
+                <div class="profile-header-edit">
+                    <div class="avatar-large">
+                        {{ userProfile.name ? userProfile.name.charAt(0).toUpperCase() : 'U' }}
+                    </div>
+                    <div class="avatar-actions">
+                        <button class="btn btn-secondary" (click)="comingSoon('Upload Photo')">Upload Photo</button>
+                        <button class="btn btn-ghost" (click)="comingSoon('Remove Photo')">Remove</button>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" [(ngModel)]="userProfile.name">
+                    </div>
+                    <div class="form-group">
+                        <label>Company/Organization</label>
+                        <input type="text" [(ngModel)]="userProfile.company">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" [(ngModel)]="userProfile.email" disabled class="disabled-input">
+                        <small>Contact support to change your primary account email.</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Title / Role</label>
+                        <input type="text" [(ngModel)]="userProfile.role">
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 20px;">
+                    <label>Timezone</label>
+                    <select [(ngModel)]="userProfile.timezone">
+                        <option value="UTC-8:00 (Pacific Time)">UTC-8:00 (Pacific Time)</option>
+                        <option value="UTC-5:00 (Eastern Time)">UTC-5:00 (Eastern Time)</option>
+                        <option value="UTC+0:00 (GMT)">UTC+0:00 (GMT)</option>
+                        <option value="UTC+5:30 (India Standard Time)">UTC+5:30 (India Standard Time)</option>
+                    </select>
+                </div>
+
+                <div class="settings-actions">
+                    <button class="btn btn-primary" (click)="saveProfile()" [disabled]="isSaving">
+                        {{ isSaving ? 'Saving...' : 'Save Profile Changes' }}
+                    </button>
+                </div>
+            </div>
+
+            <!-- NOTIFICATIONS TAB -->
+            <div class="card settings-card" *ngIf="activeTab === 'notifications'">
+                <h2>Communication Preferences</h2>
+                <p class="subtitle">Control how and when you receive alerts from your campaigns.</p>
+                <hr>
+
+                <div class="toggle-list">
+                    <div class="toggle-item">
+                        <div class="toggle-info">
+                            <h4>Email Delivery Reports</h4>
+                            <p>Get notified when a large email campaign finishes sending.</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" [(ngModel)]="notifications.emailAlerts">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div class="toggle-item">
+                        <div class="toggle-info">
+                            <h4>SMS Delivery Reports</h4>
+                            <p>Receive immediate alerts for SMS campaign completions.</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" [(ngModel)]="notifications.smsAlerts">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div class="toggle-item">
+                        <div class="toggle-info">
+                            <h4>Marketing Platform Updates</h4>
+                            <p>Receive news, feature announcements, and best practices.</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" [(ngModel)]="notifications.marketingUpdates">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="settings-actions">
+                    <button class="btn btn-primary" (click)="saveNotifications()" [disabled]="isSaving">
+                        {{ isSaving ? 'Saving...' : 'Save Preferences' }}
+                    </button>
+                </div>
+            </div>
+
+            <!-- SECURITY TAB -->
+            <div class="card settings-card" *ngIf="activeTab === 'security'">
+                <h2>Password & Security</h2>
+                <p class="subtitle">Update your password and secure your account.</p>
+                <hr>
+                <div class="form-group">
+                    <label>Current Password</label>
+                    <input type="password" placeholder="••••••••" [(ngModel)]="passwordForm.currentPassword">
+                </div>
+                <div class="form-group">
+                    <label>New Password</label>
+                    <input type="password" placeholder="••••••••" [(ngModel)]="passwordForm.newPassword">
+                </div>
+                <div class="form-group">
+                    <label>Confirm New Password</label>
+                    <input type="password" placeholder="••••••••" [(ngModel)]="passwordForm.confirmPassword">
+                </div>
+                <div class="settings-actions">
+                    <button class="btn btn-primary" (click)="updatePassword()" [disabled]="isSaving">
+                        {{ isSaving ? 'Updating...' : 'Update Password' }}
+                    </button>
+                </div>
+            </div>
+
+            <!-- BILLING TAB Placeholder -->
+            <div class="card settings-card" *ngIf="activeTab === 'billing'">
+                <h2>Billing & Usage</h2>
+                <p class="subtitle">Manage your subscription and active limits.</p>
+                <hr>
+                <div class="usage-stats">
+                    <div class="usage-item">
+                        <span class="usage-label">Emails Sent</span>
+                        <span class="usage-value">12,450 / 50k</span>
+                    </div>
+                    <div class="usage-item">
+                        <span class="usage-label">SMS Sent</span>
+                        <span class="usage-value">400 / 1k</span>
+                    </div>
+                    <div class="usage-item">
+                        <span class="usage-label">Current Plan</span>
+                        <span class="usage-value pro-badge">Pro Plan</span>
+                    </div>
+                </div>
+                <div class="settings-actions" style="margin-top: 30px;">
+                    <button class="btn btn-primary" (click)="comingSoon('Pro Plan Upgrades')">Upgrade Plan</button>
+                    <button class="btn btn-ghost" (click)="comingSoon('Billing & Invoices')">View Invoices</button>
+                </div>
+            </div>
+
+        </div> <!-- /.settings-content -->
+    </div> <!-- /.settings-layout -->
+</div> <!-- /.settings-container -->

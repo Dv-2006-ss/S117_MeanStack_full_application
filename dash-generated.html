@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SaaS Dashboard Overview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#5b13ec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#161022",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(47, 35, 72, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .sidebar-item-active {
+            background: linear-gradient(90deg, rgba(91, 19, 236, 0.2) 0%, rgba(91, 19, 236, 0) 100%);
+            border-left: 3px solid #5b13ec;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 flex-shrink-0 bg-background-light dark:bg-[#0f0a18] border-r border-slate-200 dark:border-primary/10 flex flex-col">
+<div class="p-6 flex items-center gap-3">
+<div class="size-10 bg-primary rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(91,19,236,0.5)]">
+<span class="material-symbols-outlined text-white">bolt</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-white text-lg font-bold leading-none">Campaign</h1>
+<p class="text-slate-500 dark:text-primary/70 text-xs font-medium uppercase tracking-wider">Engine</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-8 mt-4">
+<!-- CORE section -->
+<div>
+<p class="px-3 mb-4 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Core</p>
+<ul class="space-y-1">
+<li>
+<a class="sidebar-item-active flex items-center gap-3 px-3 py-2.5 rounded-r-lg text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">dashboard</span>
+<span class="text-sm font-semibold">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-sm font-medium">Customers</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">campaign</span>
+<span class="text-sm font-medium">Campaigns</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- TOOLS section -->
+<div>
+<p class="px-3 mb-4 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Tools</p>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">mail</span>
+<span class="text-sm font-medium">Email Builder</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">sms</span>
+<span class="text-sm font-medium">SMS Builder</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<div class="p-4 mt-auto">
+<div class="glass-card rounded-xl p-4 border border-primary/20 bg-primary/5">
+<p class="text-xs text-slate-400 mb-2">Current Plan</p>
+<p class="text-sm font-bold text-white mb-3">Enterprise Pro</p>
+<button class="w-full py-2 bg-primary hover:bg-primary/90 text-white text-xs font-bold rounded-lg transition-all">Upgrade</button>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark">
+<!-- Header -->
+<header class="sticky top-0 z-10 flex items-center justify-between px-10 py-6 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-primary/10">
+<div>
+<h2 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight leading-none">Dashboard Overview</h2>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Welcome back, <span class="text-primary font-semibold">Alex</span></p>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-sm">search</span>
+</div>
+<input class="block w-64 pl-10 pr-3 py-2 border-none bg-slate-100 dark:bg-primary/10 rounded-xl text-sm placeholder-slate-500 focus:ring-2 focus:ring-primary/50 text-white" placeholder="Search data..." type="text"/>
+</div>
+<button class="p-2 rounded-xl bg-slate-100 dark:bg-primary/10 text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-10 w-px bg-slate-200 dark:bg-primary/20 mx-1"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold text-slate-900 dark:text-white">Alex Johnson</p>
+<p class="text-[10px] text-slate-500 dark:text-primary/70 font-bold uppercase tracking-tighter">Admin Account</p>
+</div>
+<div class="size-10 rounded-full border-2 border-primary/30 p-0.5">
+<div class="size-full rounded-full bg-cover bg-center" data-alt="User profile avatar of Alex Johnson" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC4MW75YyRn5FBp2pMkk_8GjyqLdVHFzFpRaom7R_j6Y_cMhscrjNnvxsAkjh6_shtmzkYDjTcVpmFGyveIaKH-aZBV_brXMAAuCGsx6mB7xB71WOKM6OOkPG-u72TIvPgl7bmyGmH0_I_hIMp4T6ubOpAR7jTJq3UHSrKjnIonH-OeE2-W2EfOQRGOYZ-LI6JQziSQHh-V0yg4z3jyZFHS28CxRn0aXJ54nAyx9kd-411Avd-iyolFXHw8PopK9n6O2jsEO1xQBHNd')"></div>
+</div>
+</div>
+</div>
+</header>
+<div class="p-10 space-y-8">
+<!-- Metric Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="glass-card rounded-2xl p-6 flex flex-col justify-between group hover:border-primary/30 transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 rounded-lg bg-primary/10 text-primary shadow-[0_0_10px_rgba(91,19,236,0.2)]">
+<span class="material-symbols-outlined">ads_click</span>
+</div>
+<span class="text-xs font-bold text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded-full">+5.2%</span>
+</div>
+<div>
+<p class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Total Campaigns</p>
+<p class="text-3xl font-black text-white">124</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-card rounded-2xl p-6 flex flex-col justify-between group hover:border-primary/30 transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 rounded-lg bg-primary/10 text-primary shadow-[0_0_10px_rgba(91,19,236,0.2)]">
+<span class="material-symbols-outlined">person_add</span>
+</div>
+<span class="text-xs font-bold text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded-full">+12.1%</span>
+</div>
+<div>
+<p class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Active Customers</p>
+<p class="text-3xl font-black text-white">3,402</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="glass-card rounded-2xl p-6 flex flex-col justify-between group hover:border-primary/30 transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 rounded-lg bg-primary/10 text-primary shadow-[0_0_10px_rgba(91,19,236,0.2)]">
+<span class="material-symbols-outlined">forward_to_inbox</span>
+</div>
+<span class="text-xs font-bold text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded-full">+8.4%</span>
+</div>
+<div>
+<p class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Emails Sent</p>
+<p class="text-3xl font-black text-white">45k</p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="glass-card rounded-2xl p-6 flex flex-col justify-between group hover:border-primary/30 transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 rounded-lg bg-primary/10 text-primary shadow-[0_0_10px_rgba(91,19,236,0.2)]">
+<span class="material-symbols-outlined">monitoring</span>
+</div>
+<span class="text-xs font-bold text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded-full">+1.2%</span>
+</div>
+<div>
+<p class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Conversion Rate</p>
+<p class="text-3xl font-black text-white">12.5%</p>
+</div>
+</div>
+</div>
+<!-- Main Grid Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Performance Chart Container -->
+<div class="lg:col-span-2 glass-card rounded-2xl p-8">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="text-xl font-bold text-white">Campaign Performance</h3>
+<p class="text-slate-400 text-sm">Trends across all active channels</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-primary"></span>
+<span class="text-xs text-slate-300 mr-4">Conversions</span>
+<span class="size-2 rounded-full bg-slate-500"></span>
+<span class="text-xs text-slate-300">Reach</span>
+</div>
+</div>
+<div class="h-[300px] w-full relative">
+<!-- SVG Line Chart Mockup -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 800 300">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#5b13ec" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#5b13ec" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0 250 Q 100 220 200 240 T 400 150 T 600 180 T 800 50 L 800 300 L 0 300 Z" fill="url(#chartGradient)"></path>
+<path d="M0 250 Q 100 220 200 240 T 400 150 T 600 180 T 800 50" fill="none" stroke="#5b13ec" stroke-linecap="round" stroke-width="3"></path>
+<path d="M0 280 Q 150 260 300 270 T 500 220 T 800 180" fill="none" stroke="#475569" stroke-dasharray="5,5" stroke-width="2"></path>
+</svg>
+<!-- Chart Axes Mock -->
+<div class="absolute bottom-0 left-0 right-0 flex justify-between px-2 pt-4 border-t border-slate-700/50">
+<span class="text-[10px] font-bold text-slate-500 uppercase">Mon</span>
+<span class="text-[10px] font-bold text-slate-500 uppercase">Tue</span>
+<span class="text-[10px] font-bold text-slate-500 uppercase">Wed</span>
+<span class="text-[10px] font-bold text-slate-500 uppercase">Thu</span>
+<span class="text-[10px] font-bold text-slate-500 uppercase">Fri</span>
+<span class="text-[10px] font-bold text-slate-500 uppercase">Sat</span>
+<span class="text-[10px] font-bold text-slate-500 uppercase">Sun</span>
+</div>
+</div>
+</div>
+<!-- Quick Actions Panel -->
+<div class="glass-card rounded-2xl p-8 flex flex-col">
+<h3 class="text-xl font-bold text-white mb-6">Quick Actions</h3>
+<div class="space-y-4">
+<button class="w-full flex items-center justify-between p-4 bg-primary text-white rounded-xl hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-bold">Create Campaign</span>
+</div>
+<span class="material-symbols-outlined text-sm">arrow_forward_ios</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 bg-slate-800 text-slate-200 border border-slate-700 rounded-xl hover:bg-slate-700 transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">upload_file</span>
+<span class="font-bold">Import Dataset</span>
+</div>
+<span class="material-symbols-outlined text-sm">arrow_forward_ios</span>
+</button>
+</div>
+<div class="mt-10 p-5 rounded-xl border border-dashed border-primary/30 bg-primary/5">
+<div class="flex items-center gap-3 mb-3">
+<span class="material-symbols-outlined text-primary">tips_and_updates</span>
+<p class="text-sm font-bold text-white">Performance Tip</p>
+</div>
+<p class="text-xs text-slate-400 leading-relaxed">
+                                Your 'Summer Flash Sale' campaign is outperforming previous records by <span class="text-emerald-400 font-bold">14%</span>. Consider increasing the SMS frequency.
+                            </p>
+</div>
+<div class="mt-auto pt-6 flex justify-between items-center text-slate-500">
+<span class="text-[10px] font-bold uppercase tracking-widest">System Status</span>
+<div class="flex items-center gap-1.5">
+<div class="size-2 rounded-full bg-emerald-500 animate-pulse"></div>
+<span class="text-[10px] font-bold uppercase text-emerald-500">Operational</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Activities (Extra Context) -->
+<div class="glass-card rounded-2xl p-8">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold text-white">Recent Activities</h3>
+<button class="text-primary text-sm font-bold hover:underline underline-offset-4">View All</button>
+</div>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500">
+<span class="material-symbols-outlined text-xl">rocket_launch</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-white">Campaign "Winter Sale 2024" launched</p>
+<p class="text-xs text-slate-400">Targeting 15,400 active subscribers</p>
+</div>
+<p class="text-xs text-slate-500">2h ago</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500">
+<span class="material-symbols-outlined text-xl">warning</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-white">SMS balance running low</p>
+<p class="text-xs text-slate-400">Current balance: 450 credits remaining</p>
+</div>
+<p class="text-xs text-slate-500">5h ago</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500">
+<span class="material-symbols-outlined text-xl">person_add</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-white">New customer dataset imported</p>
+<p class="text-xs text-slate-400">Added 1,200 new contacts via CSV</p>
+</div>
+<p class="text-xs text-slate-500">Yesterday</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

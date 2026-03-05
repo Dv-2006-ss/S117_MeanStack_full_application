@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Marketing Platform Login Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#5b13ec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#161022",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-card {
+            background: rgba(34, 25, 51, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(91, 19, 236, 0.2);
+        }
+        .bg-glow {
+            background: radial-gradient(circle at 50% -20%, rgba(91, 19, 236, 0.15) 0%, rgba(22, 16, 34, 0) 60%),
+                        radial-gradient(circle at 0% 100%, rgba(91, 19, 236, 0.1) 0%, rgba(22, 16, 34, 0) 40%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+<div class="absolute inset-0 bg-glow z-0"></div>
+<div class="absolute top-[-10%] right-[-10%] w-[300px] h-[300px] bg-primary/20 blur-[100px] rounded-full"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[250px] h-[250px] bg-primary/10 blur-[80px] rounded-full"></div>
+<main class="w-full max-w-[400px] z-10">
+<div class="flex flex-col items-center mb-8">
+<div class="bg-primary/20 p-3 rounded-xl mb-4 border border-primary/30">
+<span class="material-symbols-outlined text-primary text-4xl">rocket_launch</span>
+</div>
+<h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100">MarketPulse</h1>
+<p class="text-slate-600 dark:text-slate-400 text-sm mt-1">Experience the future of automation</p>
+</div>
+<div class="glass-card rounded-xl overflow-hidden shadow-2xl">
+<div class="flex border-b border-primary/10">
+<button class="flex-1 py-4 text-sm font-bold border-b-2 border-primary text-primary bg-primary/5">
+                    Login
+                </button>
+<button class="flex-1 py-4 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-300 transition-colors">
+                    Register
+                </button>
+</div>
+<form class="p-6 space-y-5">
+<div class="space-y-2">
+<label class="text-xs font-semibold uppercase tracking-wider text-slate-400 ml-1">Email Address</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary transition-colors">mail</span>
+<input class="w-full bg-slate-900/50 border border-primary/20 rounded-lg py-3.5 pl-12 pr-4 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="name@company.com" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-semibold uppercase tracking-wider text-slate-400 ml-1">Password</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary transition-colors">lock</span>
+<input class="w-full bg-slate-900/50 border border-primary/20 rounded-lg py-3.5 pl-12 pr-12 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300" type="button">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between py-1">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="w-5 h-5 rounded border-primary/30 bg-slate-900 text-primary focus:ring-primary/40 focus:ring-offset-0 transition-all" type="checkbox"/>
+<span class="text-sm text-slate-400 group-hover:text-slate-300 transition-colors">Remember me</span>
+</label>
+<a class="text-sm font-medium text-primary hover:text-primary/80 transition-colors" href="#">Forgot Password?</a>
+</div>
+<button class="w-full bg-gradient-to-r from-primary to-[#7c41f2] hover:from-[#6b23fc] hover:to-[#8c52ff] text-white font-bold py-4 rounded-lg shadow-[0_0_20px_rgba(91,19,236,0.3)] transition-all active:scale-[0.98] mt-2" type="submit">
+                    Sign In
+                </button>
+<div class="relative py-4 flex items-center">
+<div class="flex-grow border-t border-primary/10"></div>
+<span class="flex-shrink mx-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Or continue with</span>
+<div class="flex-grow border-t border-primary/10"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-2 py-3 bg-slate-900/50 border border-primary/10 rounded-lg hover:bg-slate-900 transition-colors" type="button">
+<div class="w-5 h-5 flex items-center justify-center">
+<svg class="w-full h-full" fill="currentColor" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+</div>
+<span class="text-sm font-medium">Google</span>
+</button>
+<button class="flex items-center justify-center gap-2 py-3 bg-slate-900/50 border border-primary/10 rounded-lg hover:bg-slate-900 transition-colors" type="button">
+<span class="material-symbols-outlined text-lg">ios</span>
+<span class="text-sm font-medium">Apple</span>
+</button>
+</div>
+</form>
+</div>
+<p class="text-center text-slate-500 text-sm mt-8">
+            New to the platform? <a class="text-primary font-bold hover:underline" href="#">Create an account</a>
+</p>
+<footer class="mt-12 flex justify-center gap-6">
+<a class="text-xs text-slate-600 hover:text-slate-400 transition-colors" href="#">Privacy Policy</a>
+<a class="text-xs text-slate-600 hover:text-slate-400 transition-colors" href="#">Terms of Service</a>
+<a class="text-xs text-slate-600 hover:text-slate-400 transition-colors" href="#">Help Center</a>
+</footer>
+</main>
+</body></html>

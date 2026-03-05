@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Enterprise SaaS Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#5b13ec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#161022",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .testimonial-gradient {
+            background: linear-gradient(135deg, #161022 0%, #5b13ec 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex h-screen w-full flex-col overflow-x-hidden bg-background-light dark:bg-background-dark">
+<!-- Top Navigation -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between">
+<div class="text-slate-900 dark:text-slate-100 flex size-12 shrink-0 items-center">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1">Sign In</h2>
+</div>
+<!-- Scrollable Content Container -->
+<div class="flex-1 overflow-y-auto pb-10">
+<!-- Testimonial Section (Top half on mobile) -->
+<div class="@container px-4 py-3">
+<div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden testimonial-gradient flex flex-col justify-end p-8 shadow-xl" data-alt="Abstract 3D geometric illustration with vibrant indigo gradient">
+<!-- Subtle Abstract Pattern Overlay -->
+<div class="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-from)_0%,_transparent_100%)] from-white/30"></div>
+<div class="relative z-10">
+<div class="mb-6">
+<span class="material-symbols-outlined text-white/40 text-4xl">format_quote</span>
+</div>
+<h3 class="text-white tracking-tight text-2xl font-semibold leading-tight mb-4">
+                            'The engine that powered our 300% growth in 2023.'
+                        </h3>
+<div class="h-1 w-12 bg-primary mb-4 rounded-full"></div>
+<p class="text-white/80 text-sm font-medium">Alex Rivera</p>
+<p class="text-white/60 text-xs uppercase tracking-widest mt-1">Chief Growth Officer, TechScale</p>
+</div>
+</div>
+</div>
+<!-- Form Section -->
+<div class="px-6 pt-6">
+<h1 class="text-slate-900 dark:text-slate-100 text-[28px] font-bold leading-tight tracking-tight mb-2">Welcome back</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-8">Access your enterprise dashboard to manage your growth metrics.</p>
+<form class="space-y-5">
+<!-- Email Field -->
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5" for="email">Work Email</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">mail</span>
+<input class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg pl-10 pr-4 py-3 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" id="email" placeholder="name@company.com" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5" for="password">Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">lock</span>
+<input class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg pl-10 pr-4 py-3 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" id="password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-center justify-between">
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-slate-600 dark:text-slate-400">Remember me</span>
+</label>
+<a class="text-sm font-semibold text-primary hover:text-primary/80" href="#">Forgot password?</a>
+</div>
+<!-- Sign In Button -->
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/25 transition-all active:scale-[0.98] mt-2" type="submit">
+                        Sign In
+                    </button>
+<!-- Divider -->
+<div class="relative py-4 flex items-center">
+<div class="flex-grow border-t border-slate-200 dark:border-slate-800"></div>
+<span class="flex-shrink mx-4 text-xs font-medium text-slate-400 uppercase tracking-widest">or</span>
+<div class="flex-grow border-t border-slate-200 dark:border-slate-800"></div>
+</div>
+<!-- SSO/Google Button -->
+<button class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold py-3.5 rounded-xl flex items-center justify-center gap-3 transition-all" type="button">
+<img alt="Google Logo" class="w-5 h-5" data-alt="Official Google multi-color logo icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDChyrMdkyomNk4KjkiU1wosPpJ1c_FZ5sOV-LzIshfcoboNciwof_gnGD1mYuIyIhI790-Sog502vuPFsuJYViD15zzy3DbYmWpRV4SFKJFMKPVXkGQIffkshJS3g9QD_Is1dAV22tNdw3MUmxiVP3bVl3EqSyj8-Lr42LS3CSwRq8rJbLtrbWylJuc6PSkLA_87VeTx9e2JRxqM5qPKNtKLxNWJJ459u7d48LomjjHxrFSjnJbvcYtP_vOmugaB0I12HgIiEY7tTc"/>
+<span>Sign in with Google</span>
+</button>
+</form>
+<!-- Footer Link -->
+<p class="text-center mt-8 text-slate-600 dark:text-slate-400 text-sm">
+                    Don't have an account? <a class="text-primary font-bold" href="#">Request Access</a>
+</p>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,26 @@
+﻿[93m[4mUnused files[24m[39m (2)
+testmail.js             
+routes/campaignMailer.js
+[93m[4mUnused dependencies[24m[39m (4)
+body-parser                    package.json:17:6
+dns                            package.json:19:6
+mongodb                        package.json:23:6
+nodemailer-express-handlebars  package.json:27:6
+[93m[4mUnused devDependencies[24m[39m (1)
+eslint-plugin-import  package.json:30:6
+[93m[4mUnused exports[24m[39m (14)
+initScheduler     utils/scheduler.js:8:9                 
+sendBulkEmails    services/bulkService.js:3:9            
+sendBulkSMS       services/bulkService.js:35:9           
+addCustomers      controllers/customerController.js:7:9  
+getCustomers      controllers/customerController.js:39:9 
+replaceCustomers  controllers/customerController.js:51:9 
+updateCustomer    controllers/customerController.js:80:9 
+sendCampaign      controllers/customerController.js:108:9
+saveDataset       controllers/datasetController.js:4:9   
+getDatasets       controllers/datasetController.js:113:9 
+deleteDataset     controllers/datasetController.js:129:9 
+updateDataset     controllers/datasetController.js:150:9 
+sendEmail         services/email.service.js:3:9          
+sendAd            controllers/email.controller.js:3:9    
+[33m[4mConfiguration hints[24m (1)[39m

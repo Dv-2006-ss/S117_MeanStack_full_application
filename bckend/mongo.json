@@ -1,0 +1,60 @@
+[
+  {
+    "_id": "69a1c4ed9cc7bab5f95c7e34",
+    "owner": "6997097aa4c130130c7fbc71",
+    "name": "dddd3",
+    "subject": "dddd3",
+    "campaignType": "email",
+    "htmlContent": "\n      <div style=\"font-family: 'Inter', sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);\">\n        <p style=\"line-height: 1.6; font-size: 16px; color: #4b5563;\">Welcome{{name}} to our Marketing application</p>\n      </div>\n    ",
+    "status": "sent",
+    "sentCount": 500,
+    "deliveryLogs": [],
+    "createdAt": "2026-02-27T16:23:09.786Z",
+    "updatedAt": "2026-02-27T16:23:09.786Z",
+    "__v": 0
+  },
+  {
+    "_id": "699d656c68aae48aa927046e",
+    "owner": "6995eb7d3be1ffda50e073cc",
+    "name": "Big Sale Campaign",
+    "subject": "Big Sale",
+    "product": "Course",
+    "offer": "50% OFF",
+    "campaignType": "email",
+    "template": "699d656c68aae48aa927046c",
+    "htmlContent": "<p style=\"font-size:16px\">Welcome to our biggest sale!</p>\n        <a href=\"https://yourwebsite.com\"\n           style=\"display:inline-block;padding:10px 20px;\n           background:#007bff;color:#fff;text-decoration:none;\n           border-radius:5px\">\n           Buy Now\n        </a>\n      ",
+    "status": "sent",
+    "sentCount": 2,
+    "createdAt": "2026-02-24T08:46:36.848Z",
+    "updatedAt": "2026-02-24T08:55:05.532Z",
+    "__v": 0,
+    "deliveryLogs": []
+  },
+  {
+    "campaignType": "email",
+    "_id": "699d4e069beb2421315b6523",
+    "owner": "6995eb7d3be1ffda50e073cc",
+    "subject": "Big Sale",
+    "product": "Course",
+    "offer": "50% OFF",
+    "status": "draft",
+    "sentCount": 0,
+    "createdAt": "2026-02-24T07:06:46.471Z",
+    "updatedAt": "2026-02-24T07:06:46.471Z",
+    "__v": 0,
+    "deliveryLogs": []
+  },
+  {
+    "campaignType": "email",
+    "sentCount": 0,
+    "_id": "6999e4e9b2bd494c3eb16a5a",
+    "userId": "6995eb7d3be1ffda50e073cc",
+    "subject": "Sale",
+    "product": "Course",
+    "offer": "50% OFF",
+    "status": "sent",
+    "createdAt": "2026-02-21T17:01:29.736Z",
+    "__v": 0,
+    "deliveryLogs": []
+  }
+]

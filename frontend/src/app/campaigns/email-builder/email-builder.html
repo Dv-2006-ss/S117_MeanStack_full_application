@@ -1,0 +1,159 @@
+<div class="builder-container fade-in">
+    <div class="header glass-effect">
+        <h2>✨ Email Studio PRO</h2>
+        <div class="actions">
+            <button class="btn-secondary" (click)="goBack()">✕ Cancel</button>
+            <button class="btn-danger highlight neon-glow-danger" *ngIf="startedAsEdit" (click)="deleteCampaign()">🗑
+                Delete</button>
+            <button class="btn-primary highlight neon-glow" [disabled]="isSaving" (click)="confirmFinalEmail()">
+                <ng-container *ngIf="!isSaving">{{ startedAsEdit ? '✔ Save Now' : '🚀 Launch Now'
+                    }}</ng-container>
+                <ng-container *ngIf="isSaving">⏳ Generating...</ng-container>
+            </button>
+        </div>
+    </div>
+
+    <div class="live-builder-workspace">
+
+        <!-- LEFT PANEL: Editor -->
+        <div class="editor-side">
+
+            <div class="tools-side">
+                <div class="tools-panel glass-effect" style="margin-bottom: 1.5rem;">
+                    <h3 style="margin-bottom: 0.8rem;">Campaign Settings</h3>
+                    <div class="input-group">
+                        <label>Subject Line</label>
+                        <input [(ngModel)]="subjectLine" placeholder="Enter your compelling subject line..."
+                            class="stitch-input" />
+                    </div>
+
+                    <div class="schedule-panel"
+                        style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.05);">
+                        <label
+                            style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.8rem; font-size: 0.9rem;">
+                            <span class="material-symbols-outlined material-icon"
+                                style="color: #60a5fa; font-size: 16px;">schedule</span>
+                            Delivery Schedule
+                        </label>
+
+                        <div class="segment-control"
+                            style="display: flex; background: rgba(0,0,0,0.3); border-radius: 6px; padding: 4px; margin-bottom: 1rem; border: 1px solid rgba(255,255,255,0.05);">
+                            <button class="segment-btn"
+                                [style.background]="scheduleMode === 'immediate' ? 'rgba(255,255,255,0.1)' : 'transparent'"
+                                [style.fontWeight]="scheduleMode === 'immediate' ? '600' : '400'"
+                                (click)="scheduleMode = 'immediate'"
+                                style="flex:1; padding: 0.5rem; font-size: 0.8rem; border:none; border-radius: 4px; color: white; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 0.3rem;">
+                                ⚡ Send Now
+                            </button>
+                            <button class="segment-btn"
+                                [style.background]="scheduleMode === 'later' ? 'rgba(255,255,255,0.1)' : 'transparent'"
+                                [style.fontWeight]="scheduleMode === 'later' ? '600' : '400'"
+                                (click)="scheduleMode = 'later'"
+                                style="flex:1; padding: 0.5rem; font-size: 0.8rem; border:none; border-radius: 4px; color: white; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 0.3rem;">
+                                🕒 Schedule
+                            </button>
+                        </div>
+
+                        <div class="schedule-inputs" *ngIf="scheduleMode === 'later'"
+                            style="animation: fadeIn 0.3s ease;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
+                                <div class="input-group">
+                                    <label style="font-size: 0.75rem; color: #94a3b8; font-weight: normal;">Date</label>
+                                    <input type="date" [(ngModel)]="scheduledDateStr" class="stitch-input"
+                                        style="width: 100%; border:1px solid rgba(255,255,255,0.1); padding: 0.5rem; border-radius:6px; background:rgba(0,0,0,0.4); color:white; color-scheme: dark; font-family: inherit; font-size: 0.8rem;" />
+                                </div>
+                                <div class="input-group">
+                                    <label style="font-size: 0.75rem; color: #94a3b8; font-weight: normal;">Time</label>
+                                    <input type="time" [(ngModel)]="scheduledTimeStr" class="stitch-input"
+                                        style="width: 100%; border:1px solid rgba(255,255,255,0.1); padding: 0.5rem; border-radius:6px; background:rgba(0,0,0,0.4); color:white; color-scheme: dark; font-family: inherit; font-size: 0.8rem;" />
+                                </div>
+                            </div>
+                            <div
+                                style="font-size: 0.7rem; color: rgba(255,255,255,0.4); margin-top: 0.6rem; display: flex; align-items: center; gap: 0.3rem;">
+                                <span class="material-symbols-outlined material-icon"
+                                    style="font-size: 12px;">public</span>
+                                {{ userTimezone }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tools-panel glass-effect">
+                    <h3>Block Library</h3>
+                    <p class="muted-text">Add blocks to your email to see them update on the right instantly.</p>
+                    <div class="tools-ribbon">
+                        <button class="tool-chip" (click)="addTemplateBlock('text')"><span class="icon">📝</span>
+                            Text</button>
+                        <button class="tool-chip" (click)="addTemplateBlock('button')"><span class="icon">👆</span>
+                            Button</button>
+                        <button class="tool-chip" (click)="addTemplateBlock('image')"><span class="icon">🖼</span>
+                            Image</button>
+                        <button class="tool-chip" (click)="addTemplateBlock('divider')"><span class="icon">➖</span>
+                            Divider</button>
+                    </div>
+                </div>
+
+                <div class="blocks-container">
+                    <div class="empty-blocks" *ngIf="!blocks?.length">
+                        Click a block above to add it to your email canvas.
+                    </div>
+
+                    <div class="block-card glass-effect" *ngFor="let block of blocks; let i = index">
+                        <div class="block-header">
+                            <span class="block-title">{{ block.type | uppercase }} BLOCK SETTINGS</span>
+                            <button class="btn-danger" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;"
+                                title="Remove Block" (click)="removeTemplateBlock(i)">🗑 Remove</button>
+                        </div>
+
+                        <div class="block-content" [ngSwitch]="block.type">
+                            <div *ngSwitchCase="'text'" class="input-group">
+                                <label>Text Content</label>
+                                <textarea [(ngModel)]="block.content" (ngModelChange)="updatePreview()"
+                                    placeholder="Type your message..." rows="4"></textarea>
+                            </div>
+
+                            <div *ngSwitchCase="'button'">
+                                <div class="input-group-row">
+                                    <div class="input-group">
+                                        <label>Button Label</label>
+                                        <input [(ngModel)]="block.text" (ngModelChange)="updatePreview()"
+                                            placeholder="Shop Now" />
+                                    </div>
+                                    <div class="input-group">
+                                        <label>URL Destination</label>
+                                        <input [(ngModel)]="block.url" (ngModelChange)="updatePreview()"
+                                            placeholder="https://..." />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngSwitchCase="'image'" class="input-group">
+                                <label>Image Source URL</label>
+                                <input [(ngModel)]="block.url" (ngModelChange)="updatePreview()"
+                                    placeholder="https://unsplash.com/..." />
+                            </div>
+
+                            <div *ngSwitchCase="'divider'">
+                                <p class="muted-text" style="font-size: 0.85rem">Divider block. Settings applied
+                                    natively.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT PANEL: Live Preview -->
+        <div class="preview-side">
+            <div class="preview-header">
+                <div class="preview-dots">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="preview-subject">{{ subjectLine || campaign?.name || 'Campaign Preview' }}</div>
+            </div>
+            <div class="preview-render" [innerHTML]="finalHtml"></div>
+        </div>
+
+    </div>
+</div>

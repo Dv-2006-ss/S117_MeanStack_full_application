@@ -1,0 +1,26 @@
+
+C:\Users\dhair\marketing-automation-ui\frontend\src\app\app.ts
+  3:10  error  'provideHttpClient' is defined but never used  @typescript-eslint/no-unused-vars
+  4:10  error  'provideRouter' is defined but never used      @typescript-eslint/no-unused-vars
+
+C:\Users\dhair\marketing-automation-ui\frontend\src\app\core\campaign-engine.ts
+  9:3  error  The generic type arguments should be specified as part of the constructor type arguments  @typescript-eslint/consistent-generic-constructors
+
+C:\Users\dhair\marketing-automation-ui\frontend\src\app\core\services\analytics.ts
+  9:16  error  'token' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\dhair\marketing-automation-ui\frontend\src\app\customers\customer-list\customer-list.ts
+  118:11  error  'ext' is assigned a value but never used        @typescript-eslint/no-unused-vars
+  130:18  error  'key' is never reassigned. Use 'const' instead  prefer-const
+  621:14  error  'col' is never reassigned. Use 'const' instead  prefer-const
+  628:14  error  'row' is never reassigned. Use 'const' instead  prefer-const
+
+C:\Users\dhair\marketing-automation-ui\frontend\src\app\layout\global-toast.ts
+  3:24  error  'Toast' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\dhair\marketing-automation-ui\frontend\src\app\settings\settings.ts
+  135:20  error  'res' is defined but never used  @typescript-eslint/no-unused-vars
+
+??? 10 problems (10 errors, 0 warnings)
+  4 errors and 0 warnings potentially fixable with the `--fix` option.
+

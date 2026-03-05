@@ -1,0 +1,41 @@
+<aside class="sidebar-container">
+    <div class="sidebar-menu">
+        <p class="section-title">Core</p>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
+            <span class="material-symbols-outlined icon">dashboard</span>
+            <span>Dashboard</span>
+        </a>
+        <a routerLink="/customers" routerLinkActive="active" class="nav-item">
+            <span class="material-symbols-outlined icon">group</span>
+            <span>Customers</span>
+        </a>
+        <a routerLink="/campaigns-form" routerLinkActive="active" class="nav-item">
+            <span class="material-symbols-outlined icon">campaign</span>
+            <span>Campaigns</span>
+        </a>
+
+        <p class="section-title">Tools</p>
+        <a routerLink="/email-builder" routerLinkActive="active" class="nav-item">
+            <span class="material-symbols-outlined icon">mail</span>
+            <span>Email Builder</span>
+        </a>
+        <a routerLink="/sms-builder" routerLinkActive="active" class="nav-item">
+            <span class="material-symbols-outlined icon">sms</span>
+            <span>SMS Builder</span>
+        </a>
+    </div>
+
+    <div class="sidebar-footer">
+        <a routerLink="/settings" class="nav-item mb-4">
+            <span class="material-symbols-outlined icon">settings</span>
+            <span>Settings</span>
+        </a>
+        <div class="plan-card">
+            <p class="plan-name">Pro Plan</p>
+            <div class="progress-bar">
+                <div class="fill"></div>
+            </div>
+            <p class="plan-usage">12.4k / 20k records</p>
+        </div>
+    </div>
+</aside>
