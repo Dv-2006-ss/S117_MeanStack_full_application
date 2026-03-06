@@ -12,11 +12,18 @@ exports.registerUser = async (req, res) => {
       return res.status(400).json({ message: "All fields required" });
 
     const existingUser = await User.findOne({
-      email: email.toLowerCase()
+      $or: [
+        { email: email.toLowerCase() },
+        { name: { $regex: `^${name}$`, $options: "i" } }
+      ]
     });
 
-    if (existingUser)
-      return res.status(400).json({ message: "User already exists" });
+    if (existingUser) {
+      if (existingUser.email === email.toLowerCase()) {
+        return res.status(400).json({ message: "User with this email already exists" });
+      }
+      return res.status(400).json({ message: "User with this name already exists" });
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -103,6 +110,16 @@ exports.updateProfile = async (req, res) => {
 
     const user = await User.findById(userId);
     if (!user) return res.status(404).json({ message: "User not found" });
+
+    if (name && name !== user.name) {
+      const existingName = await User.findOne({
+        name: { $regex: `^${name}$`, $options: "i" },
+        _id: { $ne: userId }
+      });
+      if (existingName) {
+        return res.status(400).json({ message: "User with this name already exists" });
+      }
+    }
 
     if (name) user.name = name;
     if (companyName) user.companyName = companyName;
