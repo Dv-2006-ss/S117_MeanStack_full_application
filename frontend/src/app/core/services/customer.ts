@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class CustomerService {
 
   // 🔥 IMPORTANT: backend port 5000
-  private baseUrl = 'http://localhost:5000/api/customers';
+  private baseUrl = `${environment.api}/api/customers`;
 
   constructor(private http: HttpClient) { }
 
