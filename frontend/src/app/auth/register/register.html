@@ -1,189 +1,198 @@
-<div class="login-container">
-  <!-- Left Pane: Animated Background Image -->
-  <div class="login-left-pane">
-    <div class="bg-image"></div>
-    <!-- Gradient Overlay -->
-    <div class="bg-gradient-overlay"></div>
+<section class="auth-page register-page">
+  <div class="auth-story">
+    <div class="story-copy">
+      <p class="story-kicker">Velox marketing system</p>
+      <h1>Set up your workspace with more intention.</h1>
+      <p class="story-description">
+        Create a team-ready account, connect your customer data, and start shaping campaigns with less setup friction.
+      </p>
 
-    <!-- Animated Floating Value Prop -->
-    <div class="testimonial-card delay-float">
-      <span class="material-symbols-outlined testimonial-icon">insights</span>
-      <h3 class="testimonial-title">Supercharge your marketing</h3>
-      <ul class="testimonial-list">
-        <li>
-          <span class="material-symbols-outlined list-icon">check_circle</span>
-          Build high-converting campaigns
-        </li>
-        <li>
-          <span class="material-symbols-outlined list-icon">check_circle</span>
-          Engage customers instantly
-        </li>
-        <li>
-          <span class="material-symbols-outlined list-icon">check_circle</span>
-          Track every interaction
-        </li>
-      </ul>
+      <div class="story-caption">
+        <span class="caption-line"></span>
+        <p>Designed to take you from setup to first campaign with less friction and stronger visual clarity.</p>
+      </div>
+
+      <div class="story-points">
+        <div class="story-point">
+          <span class="material-symbols-outlined">group</span>
+          <div>
+            <strong>Built for shared work</strong>
+            <p>Bring in company details, keep lists organised, and let campaign planning start from the right context.</p>
+          </div>
+        </div>
+
+        <div class="story-point">
+          <span class="material-symbols-outlined">edit_square</span>
+          <div>
+            <strong>Draft before you broadcast</strong>
+            <p>Move from audience selection to message creation and delivery tracking without losing the thread.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-panel">
+      <div class="story-panel-header">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="story-panel-body">
+        <div class="story-chip-row">
+          <span class="story-chip active">Setup</span>
+          <span class="story-chip">Audience sync</span>
+          <span class="story-chip">First launch</span>
+        </div>
+
+        <div class="story-highlight">
+          <p class="story-highlight-label">FIRST WEEK FLOW</p>
+          <h3>From account to campaign in one clean path.</h3>
+          <p>Establish your workspace, connect a list, choose a channel, and move into a sendable draft without noise.</p>
+        </div>
+
+        <div class="story-metrics">
+          <div class="story-metric">
+            <span>Setup steps</span>
+            <strong>03</strong>
+          </div>
+          <div class="story-metric">
+            <span>Campaign types</span>
+            <strong>02</strong>
+          </div>
+          <div class="story-metric">
+            <span>Ready to launch</span>
+            <strong>Fast</strong>
+          </div>
+        </div>
+
+        <div class="story-footer-note">
+          <p>Set the base once. Keep the workflow elegant after that.</p>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Right Pane: Authentication Form -->
-  <div class="login-right-pane form-pane">
-    <!-- Subtle Animated Glowing Background Blobs -->
-    <div class="glow-blob primary-blob"></div>
-    <div class="glow-blob secondary-blob"></div>
-
-    <!-- Mobile close button / Back to home equivalent -->
-    <div class="mobile-close-btn">
-      <div class="close-icon-wrapper">
-        <span class="material-symbols-outlined">rocket_launch</span>
+  <div class="auth-panel">
+    <div class="auth-panel-header">
+      <div class="brand">
+        <img src="/assets/velox-logo.png" alt="Velox" width="36" height="36" />
+        <div>
+          <span class="brand-name">Velox</span>
+          <span class="brand-subtitle">Marketing workspace</span>
+        </div>
       </div>
+
+      <button class="mobile-home" type="button" (click)="goLogin()">
+        Back to login
+      </button>
     </div>
 
-    <div class="form-wrapper register-form-wrapper">
-      <!-- Header -->
-      <div class="form-header">
-        <div class="logo-wrapper">
-          <img src="/assets/velox-logo.png" alt="Velox" width="32" height="32"
-            style="border-radius:6px; object-fit:cover;" />
-          <span class="logo-text">Velox</span>
-        </div>
-        <h1 class="welcome-title">Create an account.</h1>
-        <p class="welcome-subtitle">Start your 14-day free trial. No credit card required.</p>
+    <div class="auth-card register-card">
+      <div class="card-header">
+        <p class="card-kicker">Create account</p>
+        <h2>Build your team space</h2>
+        <p class="card-copy">
+          Add your details, secure the workspace, and start your first campaign setup.
+        </p>
       </div>
 
-      <!-- Tabs -->
-      <div class="tabs-container">
-        <a class="tab inactive-tab" (click)="goLogin()">Log In</a>
-        <a class="tab active-tab">Register</a>
+      <div class="auth-switch">
+        <a class="switch-link" (click)="goLogin()">Log In</a>
+        <a class="switch-link active">Register</a>
       </div>
 
-      <form class="login-form" (ngSubmit)="register()">
-
-        <div class="form-row">
-          <!-- Full Name -->
-          <div class="input-group">
-            <label class="input-label">Full Name</label>
-            <div class="input-wrapper">
-              <div class="input-icon-left">
-                <span class="material-symbols-outlined">person</span>
-              </div>
-              <input class="custom-input" placeholder="John Doe" type="text" [(ngModel)]="name" name="name" required />
+      <form class="auth-form" (ngSubmit)="register()">
+        <div class="field-grid">
+          <label class="field">
+            <span>Full name</span>
+            <div class="field-shell">
+              <span class="material-symbols-outlined">person</span>
+              <input class="field-input" placeholder="John Doe" type="text" [(ngModel)]="name" name="name" required />
             </div>
-          </div>
+          </label>
 
-          <!-- Company Area -->
-          <div class="input-group">
-            <label class="input-label">Company Area</label>
-            <div class="input-wrapper">
-              <div class="input-icon-left">
-                <span class="material-symbols-outlined">domain</span>
-              </div>
-              <input class="custom-input" placeholder="Acme Inc" type="text" [(ngModel)]="companyName"
-                name="companyName" required />
+          <label class="field">
+            <span>Company</span>
+            <div class="field-shell">
+              <span class="material-symbols-outlined">domain</span>
+              <input class="field-input" placeholder="Acme Inc" type="text" [(ngModel)]="companyName" name="companyName" required />
             </div>
-          </div>
+          </label>
         </div>
 
-        <!-- Email Field -->
-        <div class="input-group">
-          <label class="input-label">Work Email</label>
-          <div class="input-wrapper">
-            <div class="input-icon-left">
-              <span class="material-symbols-outlined">mail</span>
-            </div>
-            <input class="custom-input" placeholder="name@enterprise.com" type="email" [(ngModel)]="email" name="email"
-              required autocomplete="email" />
+        <label class="field">
+          <span>Work email</span>
+          <div class="field-shell">
+            <span class="material-symbols-outlined">mail</span>
+            <input class="field-input" placeholder="name@enterprise.com" type="email" [(ngModel)]="email" name="email" required autocomplete="email" />
           </div>
-        </div>
+        </label>
 
-        <div class="form-row">
-          <!-- Password Field -->
-          <div class="input-group">
-            <label class="input-label">Create Password</label>
-            <div class="input-wrapper">
-              <div class="input-icon-left">
-                <span class="material-symbols-outlined">lock</span>
-              </div>
-              <input class="custom-input pr-10" placeholder="••••••••" [type]="showPassword ? 'text' : 'password'"
-                [(ngModel)]="password" name="password" required autocomplete="new-password" />
-              <button class="icon-btn-right" type="button" (click)="showPassword = !showPassword">
+        <div class="field-grid">
+          <label class="field">
+            <span>Create password</span>
+            <div class="field-shell">
+              <span class="material-symbols-outlined">lock</span>
+              <input class="field-input" placeholder="••••••••" [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password" required autocomplete="new-password" />
+              <button class="toggle-visibility" type="button" (click)="showPassword = !showPassword">
                 <span class="material-symbols-outlined">{{ showPassword ? 'visibility_off' : 'visibility' }}</span>
               </button>
             </div>
-          </div>
+          </label>
 
-          <!-- Confirm Password -->
-          <div class="input-group">
-            <label class="input-label">Confirm</label>
-            <div class="input-wrapper">
-              <div class="input-icon-left">
-                <span class="material-symbols-outlined">lock</span>
-              </div>
-              <input class="custom-input" placeholder="••••••••" [type]="showPassword ? 'text' : 'password'"
-                [(ngModel)]="confirmPassword" name="confirmPassword" required autocomplete="new-password" />
+          <label class="field">
+            <span>Confirm password</span>
+            <div class="field-shell">
+              <span class="material-symbols-outlined">lock</span>
+              <input class="field-input" placeholder="••••••••" [type]="showPassword ? 'text' : 'password'" [(ngModel)]="confirmPassword" name="confirmPassword" required autocomplete="new-password" />
             </div>
-          </div>
+          </label>
         </div>
 
-        <!-- Password Strength -->
-        <div class="strength-container" *ngIf="password">
-          <div class="strength-bar-bg">
-            <div class="strength-bar-fill" [style.width]="(password.length > 10 ? 100 : password.length * 10) + '%'"
-              [style.background]="passwordStrong ? 'var(--success, #22c55e)' : 'var(--warning, #eab308)'"
-              [style.box-shadow]="passwordStrong ? '0 0 10px #22c55e' : '0 0 10px #eab308'"></div>
+        <div class="strength-meter" *ngIf="password">
+          <div class="strength-track">
+            <div class="strength-fill" [style.width]="(password.length > 10 ? 100 : password.length * 10) + '%'" [style.background]="passwordStrong ? '#97a96b' : '#bf8d60'"></div>
           </div>
+          <span>{{ passwordStrong ? 'Strong password' : 'Keep going for a stronger password' }}</span>
         </div>
 
-        <!-- Error Messages -->
-        <div *ngIf="message" class="error-message">
-          <span class="material-symbols-outlined error-icon">error</span>
+        <div *ngIf="message" class="status-message error">
+          <span class="material-symbols-outlined">error</span>
           <span>{{ message }}</span>
         </div>
 
-        <!-- Primary Button -->
-        <button class="submit-btn" type="submit" [disabled]="loading">
-          <div class="btn-glow-overlay"></div>
-
+        <button class="primary-button" type="submit" [disabled]="loading">
           <ng-container *ngIf="!loading && !success">
-            <span class="btn-text">Create Account</span>
-            <span class="material-symbols-outlined btn-icon-right">arrow_forward</span>
+            <span>Create account</span>
+            <span class="material-symbols-outlined">arrow_forward</span>
           </ng-container>
 
           <ng-container *ngIf="loading">
-            <span class="material-symbols-outlined btn-icon-loading">sync</span>
-            <span class="btn-text">Registering...</span>
+            <span class="material-symbols-outlined spinning">progress_activity</span>
+            <span>Creating workspace</span>
           </ng-container>
 
           <ng-container *ngIf="success">
-            <span class="material-symbols-outlined btn-icon-success">check_circle</span>
-            <span class="btn-text">Success! Redirecting...</span>
+            <span class="material-symbols-outlined">check_circle</span>
+            <span>Success, redirecting</span>
           </ng-container>
         </button>
 
-        <!-- Divider -->
-        <div class="divider-wrapper">
-          <span class="divider-text">Or continue with</span>
+        <div class="divider">
+          <span>or continue with</span>
         </div>
 
-        <!-- Social Logins -->
-        <button type="button" class="social-btn" (click)="showGoogleToast()">
-          <svg class="social-icon" viewBox="0 0 24 24">
-            <path
-              d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-              fill="#4285F4"></path>
-            <path
-              d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-              fill="#34A853"></path>
-            <path
-              d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-              fill="#FBBC05"></path>
-            <path
-              d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-              fill="#EA4335"></path>
+        <button type="button" class="secondary-button" (click)="showGoogleToast()">
+          <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
           </svg>
-          Google Workspace
+          <span>Google Workspace</span>
         </button>
       </form>
     </div>
   </div>
-</div>
+</section>

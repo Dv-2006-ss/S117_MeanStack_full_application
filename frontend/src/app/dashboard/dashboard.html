@@ -1,85 +1,160 @@
-<div class="dashboard-hero fade-in">
-  <div class="hero-content" 
-       [style.transform]="'translate3d(' + (mouseX() * -40) + 'px,' + (mouseY() * -40) + 'px, 0)'">
-    <div class="badge-wrapper">
-        <div class="badge neon-glow pulse-soft">Velox Intelligence</div>
-    </div>
-    <h1 class="slogan 3d-text">Welcome back, <br/><span class="user-highlight">{{userName}}.</span></h1>
-    <p class="sub-slogan glass-text">A scalable, high-performance workspace designed for your target campaigns and data-driven growth.</p>
-
-    <div class="hero-actions">
-      <button (click)="onBuildClick()" class="btn-build skeuo-3d">
-        LAUNCH CAMPAIGN <span class="arrow">→</span>
-      </button>
-    </div>
+<section class="arata-dashboard">
+  <div class="promo-strip">
+    <span>SMART SEGMENTS. FASTER SENDS. CLEARER SIGNALS.</span>
+    <span>SMART SEGMENTS. FASTER SENDS. CLEARER SIGNALS.</span>
   </div>
 
-  <div class="hero-scene">
-    <!-- The Ultra-Reactive 3D Laptop Container -->
-    <div class="computer-scene" 
-         [style.transform]="'translate3d(' + (mouseX() * 20) + 'px,' + (mouseY() * 20) + 'px, 0) rotateX(' + (10 + mouseY() * -15 - scrollProgress() * 20) + 'deg) rotateY(' + (-15 + mouseX() * 20 + scrollProgress() * 30) + 'deg)'">
-      
-      <!-- Premium Render Placeholder with High Contrast Overlay -->
-      <div class="laptop-chassis">
-          <div class="laptop-lid-high-end morphism-neu">
-              <!-- Actual Interactive Screen Content Layered on top -->
-              <div class="screen-surface">
-                  <div class="live-canvas-preview">
-                    <!-- The "Email Being Sent" lively animation -->
-                    <div class="canvas-item active-pulse">
-                         <span class="material-symbols-outlined canvas-icon">auto_awesome</span>
-                         <div class="canvas-text">
-                             <h3>Live Campaign: {{companyTarget}}</h3>
-                             <p>Processing Data Streams...</p>
-                         </div>
-                    </div>
-                    
-                    <div class="data-graph-skeleton">
-                        <div class="bar bar-1"></div>
-                        <div class="bar bar-2"></div>
-                        <div class="bar bar-3"></div>
-                        <div class="bar bar-4"></div>
-                    </div>
+  <section class="hero-section">
+    <div class="hero-copy">
+      <p class="hero-kicker">VELox MARKETING SYSTEM</p>
+      <h1>
+        No guesswork.
+        <span>Only campaign clarity.</span>
+      </h1>
+      <p class="hero-description">
+        Build segments, shape messaging, and launch performance-driven email and SMS campaigns from one focused workspace.
+      </p>
 
-                    <div class="glare-surface"></div>
-                  </div>
-              </div>
+      <div class="hero-actions">
+        <button class="hero-cta" (click)="onBuildClick()">Start Campaign</button>
+        <div class="hero-user">
+          <span class="user-label">Workspace owner</span>
+          <span class="user-name">{{ userName }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div
+        class="hero-device"
+        [style.transform]="'translate3d(' + (mouseX() * 10) + 'px,' + (mouseY() * 10) + 'px, 0)'"
+      >
+        <div class="device-header">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="device-body">
+          <div class="device-labels">
+            <span class="active">Campaigns</span>
+            <span>Customers</span>
+            <span>Templates</span>
           </div>
-          <div class="laptop-keyboard morphism-glass"></div>
+
+          <div class="device-insight">
+            <p class="insight-label">ACTIVE FLOW</p>
+            <h3>{{ companyTarget }}</h3>
+            <p class="insight-copy">Audience synced. Message blocks approved. Delivery window open.</p>
+          </div>
+
+          <div class="device-bars">
+            <div class="bar bar-a"></div>
+            <div class="bar bar-b"></div>
+            <div class="bar bar-c"></div>
+            <div class="bar bar-d"></div>
+          </div>
+
+          <div class="device-feed">
+            <div class="feed-item">
+              <span class="dot mint"></span>
+              <span>Email queue healthy</span>
+              <strong>2.4k</strong>
+            </div>
+            <div class="feed-item">
+              <span class="dot sand"></span>
+              <span>SMS follow-up staged</span>
+              <strong>640</strong>
+            </div>
+            <div class="feed-item">
+              <span class="dot olive"></span>
+              <span>Segment refresh complete</span>
+              <strong>Now</strong>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Super reactive "Orbiting" Objects -->
-      <div class="orbit-sphere sphere-one" 
-           [style.transform]="'translate3d(' + (mouseX() * 60) + 'px,' + (mouseY() * 60) + 'px, 150px) rotate(' + (scrollProgress() * 360) + 'deg)'">
-          <span class="material-symbols-outlined">send</span>
-      </div>
-      <div class="orbit-sphere sphere-two" 
-           [style.transform]="'translate3d(' + (mouseX() * -80) + 'px,' + (mouseY() * -80) + 'px, 100px) rotate(' + (scrollProgress() * -180) + 'deg)'">
-          <span class="material-symbols-outlined">analytics</span>
-      </div>
+      <div class="floating-tag top">EMAIL</div>
+      <div class="floating-tag bottom">SMS</div>
+    </div>
+  </section>
+
+  <section class="category-section">
+    <div class="section-heading">
+      <p class="eyebrow">CORE WORKFLOWS</p>
+      <h2>Simple surfaces. Serious output.</h2>
     </div>
 
-    <!-- Massive Scene Shadows/Glows -->
-    <div class="ambient-glow" [style.transform]="'translateX(' + (mouseX() * 100) + 'px)'"></div>
-  </div>
-</div>
+    <div class="category-grid">
+      <article class="category-card">
+        <div class="category-image tone-one"></div>
+        <div class="category-body">
+          <h3>Audience Control</h3>
+          <p>Import, refine, and activate customer lists without losing context between datasets and sends.</p>
+        </div>
+      </article>
 
-<!-- Scroll Visual Guide -->
-<div class="scroll-helper" [style.opacity]="1 - scrollProgress() * 2">
-    <div class="mouse-icon"></div>
-    <span>Discover Precision</span>
-</div>
+      <article class="category-card">
+        <div class="category-image tone-two"></div>
+        <div class="category-body">
+          <h3>Message Building</h3>
+          <p>Shape email and SMS content with structured blocks, previews, and faster editing loops.</p>
+        </div>
+      </article>
 
-<!-- Extra Reactive Sections -->
-<div class="reactive-stats-grid" [style.transform]="'translateY(' + (100 - scrollProgress() * 100) + 'px)'" [style.opacity]="scrollProgress() * 1.5">
-    <div class="neu-stat-card">
-        <span class="label">Total Conversion</span>
-        <span class="val">84.2%</span>
-        <div class="mini-chart"></div>
+      <article class="category-card">
+        <div class="category-image tone-three"></div>
+        <div class="category-body">
+          <h3>Delivery Tracking</h3>
+          <p>Keep campaign history, runtime progress, and basic delivery health visible in one operating layer.</p>
+        </div>
+      </article>
     </div>
-    <div class="neu-stat-card primary-theme">
-        <span class="label">Revenue Uplift</span>
-        <span class="val">+$12.5k</span>
-        <div class="mini-chart"></div>
+  </section>
+
+  <section class="bestseller-section">
+    <div class="section-heading compact">
+      <p class="eyebrow">KEY SIGNALS</p>
+      <h2>Proven favourites. Powered by discipline.</h2>
+      <p class="section-copy">
+        The strongest campaign systems stay readable. Clear sections, clear status, clear next action.
+      </p>
     </div>
-</div>
+
+    <div class="stats-grid" [style.opacity]="0.55 + scrollProgress() * 0.45">
+      <article class="stat-card">
+        <span class="stat-label">Delivery efficiency</span>
+        <strong class="stat-value">84.2%</strong>
+        <p>Healthy throughput across the active campaign queue.</p>
+      </article>
+
+      <article class="stat-card featured">
+        <span class="stat-label">Revenue uplift</span>
+        <strong class="stat-value">+$12.5k</strong>
+        <p>Current contribution from recent launches and follow-up flows.</p>
+      </article>
+
+      <article class="stat-card">
+        <span class="stat-label">Audience readiness</span>
+        <strong class="stat-value">3 synced lists</strong>
+        <p>Segments are prepared for the next outbound cycle.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="proof-strip">
+    <div class="proof-item">
+      <h4>Scientifically structured</h4>
+      <p>Less clutter, more hierarchy.</p>
+    </div>
+    <div class="proof-item">
+      <h4>Operationally readable</h4>
+      <p>Important state is easy to scan.</p>
+    </div>
+    <div class="proof-item">
+      <h4>Built to convert</h4>
+      <p>Action surfaces stay front and center.</p>
+    </div>
+  </section>
+</section>

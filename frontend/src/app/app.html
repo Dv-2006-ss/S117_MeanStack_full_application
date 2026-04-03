@@ -1,9 +1,9 @@
-<div class="app-layout">
+<div class="app-layout" [class.auth-layout]="isAuthRoute()">
   <app-navbar class="app-header" *ngIf="isLogged()"></app-navbar>
 
-  <div class="app-body">
+  <div class="app-body" [class.auth-body]="isAuthRoute()">
     <app-sidebar *ngIf="isLogged()"></app-sidebar>
-    <main class="app-main custom-scrollbar">
+    <main class="app-main custom-scrollbar" [class.auth-main]="isAuthRoute()">
       <router-outlet></router-outlet>
     </main>
   </div>

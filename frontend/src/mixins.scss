@@ -2,57 +2,62 @@
    MORPHISM DESIGN PATTERNS (SCSS Mixins)
 ================================ */
 @mixin glassmorphism {
-    background: rgba(31, 24, 48, 0.4);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: var(--shadow-3d-base);
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.82) 0%, rgba(12, 18, 32, 0.74) 100%);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-soft);
 }
 
 @mixin neumorphism-dark {
-    background: var(--surface);
-    border: none;
-    box-shadow: 
-        10px 10px 20px rgba(0, 0, 0, 0.8),
-        -10px -10px 20px rgba(45, 34, 66, 0.4);
+    background: linear-gradient(180deg, var(--surface-raised) 0%, var(--surface) 100%);
+    border: 1px solid rgba(148, 163, 184, 0.08);
+    box-shadow:
+        inset 1px 1px 0 rgba(255, 255, 255, 0.05),
+        inset -1px -1px 0 rgba(2, 6, 23, 0.38),
+        0 18px 38px rgba(2, 6, 23, 0.34);
 }
 
 @mixin neumorphism-dark-inset {
     background: var(--surface);
-    border: none;
-    box-shadow: 
-        inset 5px 5px 10px rgba(0, 0, 0, 0.8),
-        inset -5px -5px 10px rgba(45, 34, 66, 0.4);
+    border: 1px solid rgba(148, 163, 184, 0.08);
+    box-shadow:
+        inset 8px 8px 18px rgba(2, 6, 23, 0.45),
+        inset -4px -4px 10px rgba(255, 255, 255, 0.03);
 }
 
 @mixin skeuomorphism-button {
-    background: linear-gradient(180deg, #3d2866 0%, #1a1325 100%);
-    border: 1px solid #5b13ec;
-    border-bottom: 4px solid #3b0a99;
+    background: linear-gradient(180deg, #1ecad3 0%, #0d8fa6 100%);
+    border: 1px solid #43d7e0;
+    border-bottom: 4px solid #0b6d7f;
     border-radius: var(--radius-md);
     color: white;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5), inset 0 2px 3px rgba(255,255,255,0.2);
+    text-shadow: 0 1px 2px rgba(2, 6, 23, 0.5);
+    box-shadow:
+        0 12px 24px rgba(13, 143, 166, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28);
     transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
     
     &:active {
         transform: translateY(3px);
         border-bottom-width: 1px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.5), inset 0 2px 5px rgba(0,0,0,0.4);
+        box-shadow: 0 4px 10px rgba(13, 143, 166, 0.22), inset 0 2px 5px rgba(2, 6, 23, 0.25);
     }
 }
 @mixin claymorphism {
     background: var(--surface);
     border-radius: var(--radius-lg);
     box-shadow: 
-        8px 8px 16px rgba(0, 0, 0, 0.4), 
-        -8px -8px 16px rgba(45, 34, 66, 0.2),
-        inset -8px -8px 12px rgba(0, 0, 0, 0.5),
-        inset 8px 8px 12px rgba(91, 19, 236, 0.1);
+        14px 14px 28px rgba(2, 6, 23, 0.3),
+        inset 1px 1px 0 rgba(255, 255, 255, 0.04),
+        inset -1px -1px 0 rgba(2, 6, 23, 0.2);
 }
 
 @mixin aurora-bg {
-    background: linear-gradient(135deg, #1a1325 0%, #0f0a18 100%);
+    background:
+        radial-gradient(circle at top left, rgba(29, 205, 214, 0.12), transparent 32%),
+        radial-gradient(circle at top right, rgba(249, 115, 22, 0.12), transparent 28%),
+        linear-gradient(135deg, #08111f 0%, #0d1728 55%, #111c2e 100%);
     position: relative;
     overflow: hidden;
     
@@ -61,15 +66,15 @@
         position: absolute;
         top: -50%; left: -50%;
         width: 200%; height: 200%;
-        background: radial-gradient(circle, rgba(91, 19, 236, 0.15) 0%, transparent 60%);
-        animation: aurora 10s linear infinite;
+        background: radial-gradient(circle, rgba(29, 205, 214, 0.1) 0%, transparent 58%);
+        animation: aurora 16s linear infinite;
         z-index: -1;
         pointer-events: none;
     }
 }
 
 @mixin skeleton-shimmer {
-    background: linear-gradient(90deg, #1e1b2e 25%, #2d263e 50%, #1e1b2e 75%);
+    background: linear-gradient(90deg, #132033 25%, #1b2f46 50%, #132033 75%);
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite linear;
     border-radius: 4px;

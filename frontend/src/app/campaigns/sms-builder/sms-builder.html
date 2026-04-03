@@ -4,10 +4,10 @@
     <div class="dashboard-hero-lite">
         <div class="hero-content" [style.transform]="'translate3d(' + (mouseX() * -20) + 'px,' + (mouseY() * -20) + 'px, 0)'">
             <div class="badge-wrapper">
-                <div class="badge neon-glow pulse-soft">Premium Messaging</div>
+                <div class="badge neon-glow pulse-soft">SMS Workspace</div>
             </div>
-            <h1 class="page-title 3d-text">SMS Campaign <span class="highlight">Studio</span></h1>
-            <p class="page-subtitle glass-text">Compose high-impact mobile campaigns with real-time preview and 3D precision.</p>
+            <h1 class="page-title 3d-text">Shape the next <span class="highlight">mobile send</span></h1>
+            <p class="page-subtitle glass-text">Write tighter SMS copy, schedule delivery, and preview the message exactly as your audience will receive it.</p>
         </div>
 
         <div class="hero-scene">
@@ -34,7 +34,7 @@
 
         <div class="editor-panel glass-effect">
             <h3>Compose Message</h3>
-            <p class="subtitle">Personalize your message with template variables</p>
+            <p class="subtitle">Insert merge fields, schedule delivery, and keep the message concise.</p>
 
             <div class="tools-grid">
                 <button class="tool-btn" (click)="insertVariable('{{name}}')">
@@ -102,7 +102,7 @@
 
             <div class="input-group" style="margin-top: 1.5rem;">
                 <label>Message Content</label>
-                <textarea [(ngModel)]="smsContent" placeholder="Hi [Name], we have a special offer for you!" rows="6"
+                <textarea [(ngModel)]="smsContent" placeholder="Write a clear, direct SMS message..." rows="6"
                     class="sms-textarea"></textarea>
 
                 <div class="char-count" [class.warning]="smsContent.length > 160">

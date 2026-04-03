@@ -4,10 +4,10 @@
     <div class="dashboard-hero-lite">
         <div class="hero-content" [style.transform]="'translate3d(' + (mouseX() * -20) + 'px,' + (mouseY() * -20) + 'px, 0)'">
             <div class="badge-wrapper">
-                <div class="badge neon-glow pulse-soft">Enterprise Architect</div>
+                <div class="badge neon-glow pulse-soft">Email Workspace</div>
             </div>
-            <h1 class="page-title 3d-text">Email Campaign <span class="highlight">Architect</span></h1>
-            <p class="page-subtitle glass-text">Design pixel-perfect responsive emails with our most immersive 3D workspace. Real-time preview within virtual hardware.</p>
+            <h1 class="page-title 3d-text">Build the next <span class="highlight">email send</span></h1>
+            <p class="page-subtitle glass-text">Compose content blocks, refine structure, and preview the final message in one focused workspace.</p>
         </div>
 
         <div class="hero-scene">
@@ -41,16 +41,16 @@
         <div class="editor-panel glass-effect">
             <div class="setup-header">
                 <h3>Design Composition</h3>
-                <p class="subtitle">Customize your campaign blocks and alignment below.</p>
+                <p class="subtitle">Adjust copy, hierarchy, and layout before you push this campaign live.</p>
             </div>
 
             <div class="input-group">
                 <label>Subject Line</label>
-                <input [(ngModel)]="subjectLine" placeholder="Enter compelling subject..." class="stitch-input" />
+                <input [(ngModel)]="subjectLine" placeholder="Write a clear subject line..." class="stitch-input" />
             </div>
 
             <div class="tools-grid-box" style="margin-top: 2rem;">
-                <label class="section-label">Component Blocks</label>
+                <label class="section-label">Content Blocks</label>
                 <div class="tools-ribbon">
                     <button class="tool-btn-lite" (click)="addTemplateBlock('text')"><span class="icon">📝</span> Text</button>
                     <button class="tool-btn-lite" (click)="addTemplateBlock('button')"><span class="icon">👆</span> Button</button>
@@ -90,14 +90,14 @@
                             </button>
                         </div>
 
-                        <textarea *ngIf="block.type === 'text'" [(ngModel)]="block.content" (ngModelChange)="updatePreview()" rows="3" class="preview-textarea" placeholder="Type your text content here..."></textarea>
+                        <textarea *ngIf="block.type === 'text'" [(ngModel)]="block.content" (ngModelChange)="updatePreview()" rows="3" class="preview-textarea" placeholder="Write campaign copy..."></textarea>
                         
                         <div *ngIf="block.type === 'button'" class="input-row-flex">
-                            <input [(ngModel)]="block.text" (ngModelChange)="updatePreview()" placeholder="Button Label" class="stitch-input" />
-                            <input [(ngModel)]="block.url" (ngModelChange)="updatePreview()" placeholder="Link URL" class="stitch-input" />
+                            <input [(ngModel)]="block.text" (ngModelChange)="updatePreview()" placeholder="CTA label" class="stitch-input" />
+                            <input [(ngModel)]="block.url" (ngModelChange)="updatePreview()" placeholder="Destination URL" class="stitch-input" />
                         </div>
                         
-                        <input *ngIf="block.type === 'image'" [(ngModel)]="block.url" (ngModelChange)="updatePreview()" placeholder="Enter Image URL" class="stitch-input" />
+                        <input *ngIf="block.type === 'image'" [(ngModel)]="block.url" (ngModelChange)="updatePreview()" placeholder="Paste image URL" class="stitch-input" />
                         
                         <p *ngIf="block.type === 'divider'" class="divider-preview-label">
                             Horizontal Divider Line

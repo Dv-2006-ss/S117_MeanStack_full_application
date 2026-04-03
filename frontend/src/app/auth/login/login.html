@@ -1,137 +1,162 @@
-<div class="login-container">
-  <!-- Left Pane: Animated Background Image -->
-  <div class="login-left-pane">
-    <div class="bg-image"></div>
-    <!-- Gradient Overlay -->
-    <div class="bg-gradient-overlay"></div>
-
-    <!-- Animated Floating Testimonial -->
-    <div class="testimonial-card">
-      <span class="material-symbols-outlined testimonial-icon">auto_awesome</span>
-      <p class="testimonial-text">
-        "Velox has completely transformed how we run campaigns. The intuitive automation tools let us reach our
-        audience exactly when it matters most, scaling our engagement effortlessly."
+<section class="auth-page login-page">
+  <div class="auth-story">
+    <div class="story-copy">
+      <p class="story-kicker">Velox marketing system</p>
+      <h1>Campaign control with a calmer surface.</h1>
+      <p class="story-description">
+        Sign in to manage segments, message drafts, and launch activity from one focused workspace.
       </p>
-      <div class="testimonial-author-wrapper">
-        <div class="author-avatar">
-          <span class="material-symbols-outlined">person</span>
+
+      <div class="story-caption">
+        <span class="caption-line"></span>
+        <p>Built for teams that want cleaner launches, calmer interfaces, and less dashboard noise.</p>
+      </div>
+
+      <div class="story-points">
+        <div class="story-point">
+          <span class="material-symbols-outlined">mail</span>
+          <div>
+            <strong>Email and SMS together</strong>
+            <p>Keep campaigns, audiences, and send history close to the same workflow.</p>
+          </div>
         </div>
-        <div>
-          <h4 class="author-name">Dhairya</h4>
-          <p class="author-title">CEO, Velox</p>
+
+        <div class="story-point">
+          <span class="material-symbols-outlined">monitoring</span>
+          <div>
+            <strong>Readable performance cues</strong>
+            <p>Spot what is ready, what is live, and what still needs attention without clutter.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-panel">
+      <div class="story-panel-header">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="story-panel-body">
+        <div class="story-chip-row">
+          <span class="story-chip active">Campaigns</span>
+          <span class="story-chip">Audience</span>
+          <span class="story-chip">Templates</span>
+        </div>
+
+        <div class="story-highlight">
+          <p class="story-highlight-label">TODAY'S SIGNAL</p>
+          <h3>Launches are ready to move.</h3>
+          <p>Delivery timing, approval state, and audience sync are all visible before you press send.</p>
+        </div>
+
+        <div class="story-metrics">
+          <div class="story-metric">
+            <span>Open workflows</span>
+            <strong>04</strong>
+          </div>
+          <div class="story-metric">
+            <span>Synced lists</span>
+            <strong>12k</strong>
+          </div>
+          <div class="story-metric">
+            <span>Avg. delivery</span>
+            <strong>84%</strong>
+          </div>
+        </div>
+
+        <div class="story-footer-note">
+          <p>Quiet product surfaces. Faster launch decisions.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Right Pane: Authentication Form -->
-  <div class="login-right-pane">
-    <!-- Subtle Animated Glowing Background Blobs -->
-    <div class="glow-blob primary-blob"></div>
-    <div class="glow-blob secondary-blob"></div>
-
-    <!-- Mobile close button / Back to home equivalent -->
-    <div class="mobile-close-btn">
-      <div class="close-icon-wrapper">
-        <span class="material-symbols-outlined">rocket_launch</span>
+  <div class="auth-panel">
+    <div class="auth-panel-header">
+      <div class="brand">
+        <img src="/assets/velox-logo.png" alt="Velox" width="36" height="36" />
+        <div>
+          <span class="brand-name">Velox</span>
+          <span class="brand-subtitle">Marketing workspace</span>
+        </div>
       </div>
+
+      <button class="mobile-home" type="button" (click)="goRegister()">
+        Create account
+      </button>
     </div>
 
-    <div class="form-wrapper">
-      <!-- Header -->
-      <div class="form-header">
-        <div class="logo-wrapper">
-          <img src="/assets/velox-logo.png" alt="Velox" width="32" height="32"
-            style="border-radius:6px; object-fit:cover;" />
-          <span class="logo-text">Velox</span>
-        </div>
-        <h1 class="welcome-title">Welcome Back.</h1>
-        <p class="welcome-subtitle">Sign in to continue to your dashboard.</p>
+    <div class="auth-card">
+      <div class="card-header">
+        <p class="card-kicker">Welcome back</p>
+        <h2>Sign in to continue</h2>
+        <p class="card-copy">
+          Access your audience data, campaign drafts, and delivery activity.
+        </p>
       </div>
 
-      <!-- Tabs -->
-      <div class="tabs-container">
-        <a class="tab active-tab">Log In</a>
-        <a class="tab inactive-tab" (click)="goRegister()">Register</a>
+      <div class="auth-switch">
+        <a class="switch-link active">Log In</a>
+        <a class="switch-link" (click)="goRegister()">Register</a>
       </div>
 
-      <form class="login-form" (ngSubmit)="login()">
-        <!-- Email Field -->
-        <div class="input-group">
-          <label class="input-label">Email Address</label>
-          <div class="input-wrapper">
-            <div class="input-icon-left">
-              <span class="material-symbols-outlined">mail</span>
-            </div>
-            <input class="custom-input" placeholder="name@enterprise.com" type="email" [(ngModel)]="email" name="email"
-              required autocomplete="email" />
+      <form class="auth-form" (ngSubmit)="login()">
+        <label class="field">
+          <span>Email address</span>
+          <div class="field-shell">
+            <span class="material-symbols-outlined">mail</span>
+            <input class="field-input" placeholder="name@enterprise.com" type="email" [(ngModel)]="email" name="email" required autocomplete="email" />
           </div>
-        </div>
+        </label>
 
-        <!-- Password Field -->
-        <div class="input-group">
-          <div class="password-label-wrapper">
-            <label class="input-label">Password</label>
-            <a class="forgot-link" href="javascript:void(0)">Forgot?</a>
+        <label class="field">
+          <div class="field-label-row">
+            <span>Password</span>
+            <a class="utility-link" href="javascript:void(0)">Forgot?</a>
           </div>
-          <div class="input-wrapper">
-            <div class="input-icon-left">
-              <span class="material-symbols-outlined">lock</span>
-            </div>
-            <input class="custom-input" placeholder="••••••••" type="password" [(ngModel)]="password" name="password"
-              required autocomplete="current-password" />
+          <div class="field-shell">
+            <span class="material-symbols-outlined">lock</span>
+            <input class="field-input" placeholder="••••••••" type="password" [(ngModel)]="password" name="password" required autocomplete="current-password" />
           </div>
-        </div>
+        </label>
 
-        <!-- Remember Me -->
-        <div class="remember-wrapper">
-          <input class="custom-checkbox" id="remember" type="checkbox" />
-          <label class="remember-label" for="remember">Keep me signed in</label>
-        </div>
+        <label class="checkbox-row" for="remember">
+          <input class="checkbox" id="remember" type="checkbox" />
+          <span>Keep me signed in on this device</span>
+        </label>
 
-        <!-- Error Messages -->
-        <div *ngIf="message" class="error-message">
-          <span class="material-symbols-outlined error-icon">error</span>
+        <div *ngIf="message" class="status-message error">
+          <span class="material-symbols-outlined">error</span>
           <span>{{ message }}</span>
         </div>
 
-        <!-- Primary Button -->
-        <button class="submit-btn" type="submit" [disabled]="loading">
-          <div class="btn-glow-overlay"></div>
+        <button class="primary-button" type="submit" [disabled]="loading">
           <ng-container *ngIf="!loading">
-            <span class="btn-text">Sign In securely</span>
-            <span class="material-symbols-outlined btn-icon-right">arrow_forward</span>
+            <span>Sign in</span>
+            <span class="material-symbols-outlined">arrow_forward</span>
           </ng-container>
           <ng-container *ngIf="loading">
-            <span class="material-symbols-outlined btn-icon-loading">sync</span>
-            <span class="btn-text">Authenticating...</span>
+            <span class="material-symbols-outlined spinning">progress_activity</span>
+            <span>Authenticating</span>
           </ng-container>
         </button>
 
-        <!-- Divider -->
-        <div class="divider-wrapper">
-          <span class="divider-text">Or continue with</span>
+        <div class="divider">
+          <span>or continue with</span>
         </div>
 
-        <!-- Social Logins -->
-        <button type="button" class="social-btn" (click)="showGoogleToast()">
-          <svg class="social-icon" viewBox="0 0 24 24">
-            <path
-              d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-              fill="#4285F4"></path>
-            <path
-              d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-              fill="#34A853"></path>
-            <path
-              d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-              fill="#FBBC05"></path>
-            <path
-              d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-              fill="#EA4335"></path>
+        <button type="button" class="secondary-button" (click)="showGoogleToast()">
+          <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
           </svg>
-          Google Workspace
+          <span>Google Workspace</span>
         </button>
       </form>
     </div>
   </div>
-</div>
+</section>

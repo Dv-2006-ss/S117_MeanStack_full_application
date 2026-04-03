@@ -53,7 +53,8 @@
 
 /* ================= HEADERS ================= */
 .page-title {
-  font-size: 1.8rem;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--text-main);
   letter-spacing: -0.02em;
@@ -67,6 +68,7 @@
   padding: 2rem;
   margin-bottom: 2rem;
   border-radius: var(--radius-xl);
+  border: 1px solid var(--border-light);
 }
 
 .section h3 {
@@ -93,13 +95,14 @@
   @include claymorphism;
   padding: 1.5rem;
   transition: all 0.2s ease;
+  border: 1px solid rgba(148, 163, 184, 0.08);
 }
 
 .dataset-card:hover {
-  border-color: var(--primary-light);
+  border-color: rgba(29, 205, 214, 0.18);
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
-  background: var(--surface);
+  background: var(--surface-hover);
 }
 
 .dataset-name {
@@ -109,11 +112,6 @@
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-.dataset-name::before {
-  content: "📊";
-  font-size: 1.2rem;
 }
 
 /* Buttons */
@@ -148,7 +146,7 @@ button {
 
 /* ================= CAMPAIGN HISTORY TABLES ================= */
 .table-wrapper {
-  background: var(--surface);
+  background: rgba(15, 27, 45, 0.52);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
   overflow-x: auto;
@@ -161,7 +159,7 @@ button {
 }
 
 .pro-table th {
-  background: var(--bg-app);
+  background: rgba(8, 17, 31, 0.84);
   color: var(--text-muted);
   font-size: 0.75rem;
   font-weight: 600;
@@ -183,7 +181,7 @@ button {
 }
 
 .pro-table tr:hover:not(:first-child) {
-  background: var(--surface-hover);
+  background: rgba(28, 47, 71, 0.52);
 }
 
 /* Badges */
@@ -193,19 +191,19 @@ button {
   font-size: 0.75rem;
   font-weight: 700;
   border-radius: var(--radius-full);
-  background: #f1f5f9;
-  color: #475569;
+  background: rgba(148, 163, 184, 0.14);
+  color: var(--text-strong);
 }
 
 /* Specifically color SMS and Email differently if you use ngClass. Currently defaulting to blue block */
 .type-badge.email {
-  background: #dbeafe;
-  color: #1e3a8a;
+  background: rgba(29, 205, 214, 0.14);
+  color: var(--primary-light);
 }
 
 .type-badge.sms {
-  background: #e0e7ff;
-  color: #3730a3;
+  background: rgba(249, 115, 22, 0.14);
+  color: #fdba74;
 }
 
 .status-badge {
@@ -245,7 +243,7 @@ button {
   padding: 2rem;
   color: var(--text-muted);
   font-weight: 500;
-  background: var(--bg-app);
+  background: rgba(8, 17, 31, 0.5);
   border-radius: var(--radius-lg);
   border: 1px dashed var(--border-focus);
 }
@@ -317,15 +315,15 @@ button {
 }
 
 .btn {
-  background: var(--bg-app);
-  border: 1px solid var(--border-focus);
+  background: rgba(8, 17, 31, 0.68);
+  border: 1px solid rgba(148, 163, 184, 0.14);
   color: var(--text-main);
   flex: 1;
 }
 
 .btn:hover {
   background: var(--surface-hover);
-  border-color: var(--text-muted);
+  border-color: rgba(29, 205, 214, 0.2);
 }
 
 .btn-danger {
