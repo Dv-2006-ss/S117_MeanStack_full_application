@@ -1,160 +1,168 @@
-<section class="arata-dashboard">
-  <div class="promo-strip">
-    <span>SMART SEGMENTS. FASTER SENDS. CLEARER SIGNALS.</span>
-    <span>SMART SEGMENTS. FASTER SENDS. CLEARER SIGNALS.</span>
+<section class="morphism-dashboard">
+  <div class="ambient-blur ambient-top"></div>
+  <div class="ambient-blur ambient-right"></div>
+  <div class="ambient-blur ambient-bottom"></div>
+  <div class="dashboard-mesh"></div>
+
+  <div class="hero-marquee">
+    <span>VELox PRODUCT STORY</span>
+    <span>3D SCROLL DASHBOARD</span>
+    <span>WARM GLASS MORPHISM</span>
+    <span>HERO BENEFITS FIRST</span>
   </div>
 
-  <section class="hero-section">
+  <section class="hero-shell glass-surface" [style.transform]="heroTransform()">
     <div class="hero-copy">
-      <p class="hero-kicker">VELox MARKETING SYSTEM</p>
+      <p class="hero-kicker">VELox CAMPAIGN ENGINE</p>
       <h1>
-        No guesswork.
-        <span>Only campaign clarity.</span>
+        Your dashboard now feels like
+        <span>a premium product website.</span>
       </h1>
       <p class="hero-description">
-        Build segments, shape messaging, and launch performance-driven email and SMS campaigns from one focused workspace.
+        Inspired by editorial hero pages, this redesign leads with the product, explains the story behind it, and
+        wraps the whole experience in layered 3D scroll motion with premium glass morphism.
       </p>
+
+      <div class="hero-pill-row">
+        <span class="hero-pill" *ngFor="let pill of heroPills">{{ pill }}</span>
+      </div>
 
       <div class="hero-actions">
-        <button class="hero-cta" (click)="onBuildClick()">Start Campaign</button>
-        <div class="hero-user">
-          <span class="user-label">Workspace owner</span>
-          <span class="user-name">{{ userName }}</span>
+        <button class="hero-cta" (click)="onBuildClick()">Launch Campaign Builder</button>
+
+        <div class="hero-owner glass-chip">
+          <span class="owner-label">Workspace owner</span>
+          <strong>{{ userName }}</strong>
         </div>
+      </div>
+
+      <div class="hero-proof-row">
+        <article
+          class="proof-chip glass-chip"
+          *ngFor="let stat of heroStats; let i = index"
+          [style.transform]="proofChipTransform(i)"
+        >
+          <span>{{ stat.label }}</span>
+          <strong>{{ stat.value }}</strong>
+        </article>
       </div>
     </div>
 
-    <div class="hero-visual">
-      <div
-        class="hero-device"
-        [style.transform]="'translate3d(' + (mouseX() * 10) + 'px,' + (mouseY() * 10) + 'px, 0)'"
+    <div class="hero-stage">
+      <div class="stage-aura"></div>
+      <div class="stage-grid"></div>
+      <div class="product-shadow"></div>
+
+      <article class="product-core glass-card" [style.transform]="productCoreTransform()">
+        <p class="product-badge">Velox</p>
+        <h3>Campaign OS</h3>
+        <p class="product-copy">
+          Audience memory, message precision, and delivery rhythm inside one cinematic product surface.
+        </p>
+
+        <div class="product-specs">
+          <span>Audience</span>
+          <span>Templates</span>
+          <span>Automation</span>
+        </div>
+      </article>
+
+      <article
+        *ngFor="let panel of floatingPanels; let i = index"
+        [class]="'floating-panel glass-card panel-' + i"
+        [style.transform]="floatingPanelTransform(i)"
       >
-        <div class="device-header">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-
-        <div class="device-body">
-          <div class="device-labels">
-            <span class="active">Campaigns</span>
-            <span>Customers</span>
-            <span>Templates</span>
-          </div>
-
-          <div class="device-insight">
-            <p class="insight-label">ACTIVE FLOW</p>
-            <h3>{{ companyTarget }}</h3>
-            <p class="insight-copy">Audience synced. Message blocks approved. Delivery window open.</p>
-          </div>
-
-          <div class="device-bars">
-            <div class="bar bar-a"></div>
-            <div class="bar bar-b"></div>
-            <div class="bar bar-c"></div>
-            <div class="bar bar-d"></div>
-          </div>
-
-          <div class="device-feed">
-            <div class="feed-item">
-              <span class="dot mint"></span>
-              <span>Email queue healthy</span>
-              <strong>2.4k</strong>
-            </div>
-            <div class="feed-item">
-              <span class="dot sand"></span>
-              <span>SMS follow-up staged</span>
-              <strong>640</strong>
-            </div>
-            <div class="feed-item">
-              <span class="dot olive"></span>
-              <span>Segment refresh complete</span>
-              <strong>Now</strong>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="floating-tag top">EMAIL</div>
-      <div class="floating-tag bottom">SMS</div>
+        <p class="panel-label">{{ panel.label }}</p>
+        <h4>{{ panel.title }}</h4>
+        <p>{{ panel.copy }}</p>
+      </article>
     </div>
   </section>
 
-  <section class="category-section">
+  <section class="story-shell glass-surface" [style.transform]="surfaceTransform(180, 58, 72, 8, -2)">
     <div class="section-heading">
-      <p class="eyebrow">CORE WORKFLOWS</p>
-      <h2>Simple surfaces. Serious output.</h2>
-    </div>
-
-    <div class="category-grid">
-      <article class="category-card">
-        <div class="category-image tone-one"></div>
-        <div class="category-body">
-          <h3>Audience Control</h3>
-          <p>Import, refine, and activate customer lists without losing context between datasets and sends.</p>
-        </div>
-      </article>
-
-      <article class="category-card">
-        <div class="category-image tone-two"></div>
-        <div class="category-body">
-          <h3>Message Building</h3>
-          <p>Shape email and SMS content with structured blocks, previews, and faster editing loops.</p>
-        </div>
-      </article>
-
-      <article class="category-card">
-        <div class="category-image tone-three"></div>
-        <div class="category-body">
-          <h3>Delivery Tracking</h3>
-          <p>Keep campaign history, runtime progress, and basic delivery health visible in one operating layer.</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="bestseller-section">
-    <div class="section-heading compact">
-      <p class="eyebrow">KEY SIGNALS</p>
-      <h2>Proven favourites. Powered by discipline.</h2>
+      <p class="eyebrow">WEBSITE HISTORY</p>
+      <h2>From scattered tools to one clear product story.</h2>
       <p class="section-copy">
-        The strongest campaign systems stay readable. Clear sections, clear status, clear next action.
+        This section brings the brand history into the dashboard itself, so the page feels intentional like a hero-led
+        website instead of a collection of unrelated modules.
       </p>
     </div>
 
-    <div class="stats-grid" [style.opacity]="0.55 + scrollProgress() * 0.45">
-      <article class="stat-card">
-        <span class="stat-label">Delivery efficiency</span>
-        <strong class="stat-value">84.2%</strong>
-        <p>Healthy throughput across the active campaign queue.</p>
+    <div class="story-layout">
+      <article class="story-note glass-note">
+        <p class="note-label">Design direction</p>
+        <h3>Storytelling now lives inside the dashboard.</h3>
+        <p>
+          The first fold introduces the product. The next fold explains the journey. The next fold turns benefits into
+          premium objects. That sequence creates the same confidence a strong launch page does.
+        </p>
       </article>
 
-      <article class="stat-card featured">
-        <span class="stat-label">Revenue uplift</span>
-        <strong class="stat-value">+$12.5k</strong>
-        <p>Current contribution from recent launches and follow-up flows.</p>
-      </article>
+      <div class="story-stack">
+        <article
+          class="story-card glass-card"
+          *ngFor="let moment of storyMoments; let i = index"
+          [style.transform]="storyCardTransform(i)"
+        >
+          <span class="story-phase">{{ moment.phase }}</span>
+          <h3>{{ moment.title }}</h3>
+          <p>{{ moment.copy }}</p>
+          <small>{{ moment.detail }}</small>
+        </article>
+      </div>
+    </div>
+  </section>
 
-      <article class="stat-card">
-        <span class="stat-label">Audience readiness</span>
-        <strong class="stat-value">3 synced lists</strong>
-        <p>Segments are prepared for the next outbound cycle.</p>
+  <section class="benefits-shell glass-surface" [style.transform]="surfaceTransform(460, 72, 82, 7, 2)">
+    <div class="section-heading compact">
+      <p class="eyebrow">HERO BENEFITS</p>
+      <h2>Benefits are shown like product highlights.</h2>
+      <p class="section-copy">
+        Instead of generic dashboard boxes, these cards feel like premium feature panels with depth, softness, and
+        stronger visual priority.
+      </p>
+    </div>
+
+    <div class="benefit-grid">
+      <article
+        class="benefit-card glass-card"
+        *ngFor="let benefit of benefitCards; let i = index"
+        [style.transform]="benefitCardTransform(i)"
+      >
+        <p class="benefit-tag">{{ benefit.tag }}</p>
+        <h3>{{ benefit.title }}</h3>
+        <p>{{ benefit.copy }}</p>
+
+        <ul class="benefit-points">
+          <li *ngFor="let point of benefit.points">{{ point }}</li>
+        </ul>
       </article>
     </div>
   </section>
 
-  <section class="proof-strip">
-    <div class="proof-item">
-      <h4>Scientifically structured</h4>
-      <p>Less clutter, more hierarchy.</p>
-    </div>
-    <div class="proof-item">
-      <h4>Operationally readable</h4>
-      <p>Important state is easy to scan.</p>
-    </div>
-    <div class="proof-item">
-      <h4>Built to convert</h4>
-      <p>Action surfaces stay front and center.</p>
+  <section class="signal-shell" [style.transform]="surfaceTransform(760, 94, 96, 6, -1)">
+    <div class="signal-board glass-surface">
+      <div class="section-heading compact">
+        <p class="eyebrow">LIVE PRODUCT FEEL</p>
+        <h2>Readable signals still stay front and center.</h2>
+        <p class="section-copy">
+          The new dashboard still behaves like a working product. Metrics, momentum, and next action remain clear even
+          inside the new 3D glass system.
+        </p>
+      </div>
+
+      <div class="signal-grid">
+        <article
+          class="signal-card glass-card"
+          *ngFor="let signal of liveSignals; let i = index"
+          [style.transform]="signalCardTransform(i)"
+        >
+          <span class="signal-label">{{ signal.label }}</span>
+          <strong class="signal-value">{{ signal.value }}</strong>
+          <p>{{ signal.copy }}</p>
+        </article>
+      </div>
     </div>
   </section>
 </section>
