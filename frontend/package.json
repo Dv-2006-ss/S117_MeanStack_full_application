@@ -35,6 +35,8 @@
     "@types/papaparse": "^5.5.2",
     "chart.js": "^4.5.1",
     "gsap": "^3.14.2",
+    "lucide-angular": "^1.0.0",
+    "lucide-react": "^1.7.0",
     "papaparse": "^5.5.3",
     "rxjs": "~7.8.0",
     "tailwindcss": "^4.2.1",
