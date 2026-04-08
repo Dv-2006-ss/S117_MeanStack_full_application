@@ -1,23 +1,23 @@
 <section class="auth-page register-page">
   <div class="auth-story">
     <div class="story-copy">
-      <p class="story-kicker">Velox marketing system</p>
-      <h1>Set up your workspace with more intention.</h1>
+      <p class="story-kicker">CampaignAI onboarding</p>
+      <h1>Set up a campaign workspace your team can actually use.</h1>
       <p class="story-description">
-        Create a team-ready account, connect your customer data, and start shaping campaigns with less setup friction.
+        Create your workspace, save your offer and voice, and start generating campaign assets with less setup friction.
       </p>
 
       <div class="story-caption">
         <span class="caption-line"></span>
-        <p>Designed to take you from setup to first campaign with less friction and stronger visual clarity.</p>
+        <p>Designed to take you from signup to first campaign brief with less friction and clearer context.</p>
       </div>
 
       <div class="story-points">
         <div class="story-point">
           <span class="material-symbols-outlined">group</span>
           <div>
-            <strong>Built for shared work</strong>
-            <p>Bring in company details, keep lists organised, and let campaign planning start from the right context.</p>
+            <strong>Built for small teams</strong>
+            <p>Save the basics once so campaign planning starts with the right business context.</p>
           </div>
         </div>
 
@@ -25,7 +25,7 @@
           <span class="material-symbols-outlined">edit_square</span>
           <div>
             <strong>Draft before you broadcast</strong>
-            <p>Move from audience selection to message creation and delivery tracking without losing the thread.</p>
+            <p>Move from audience selection to generated assets and delivery tracking without losing the thread.</p>
           </div>
         </div>
       </div>
@@ -47,22 +47,22 @@
 
         <div class="story-highlight">
           <p class="story-highlight-label">FIRST WEEK FLOW</p>
-          <h3>From account to campaign in one clean path.</h3>
-          <p>Establish your workspace, connect a list, choose a channel, and move into a sendable draft without noise.</p>
+          <h3>From signup to launch brief in one clean path.</h3>
+          <p>Save your brand voice, import a list, pick a goal, and move into a sendable draft without extra noise.</p>
         </div>
 
         <div class="story-metrics">
           <div class="story-metric">
             <span>Setup steps</span>
-            <strong>03</strong>
+            <strong>04</strong>
           </div>
           <div class="story-metric">
-            <span>Campaign types</span>
-            <strong>02</strong>
+            <span>Output types</span>
+            <strong>05</strong>
           </div>
           <div class="story-metric">
-            <span>Ready to launch</span>
-            <strong>Fast</strong>
+            <span>Execution</span>
+            <strong>Email + SMS</strong>
           </div>
         </div>
 
@@ -76,10 +76,10 @@
   <div class="auth-panel">
     <div class="auth-panel-header">
       <div class="brand">
-        <img src="/assets/velox-logo.png" alt="Velox" width="36" height="36" />
+        <div class="brand-glyph">C</div>
         <div>
-          <span class="brand-name">Velox</span>
-          <span class="brand-subtitle">Marketing workspace</span>
+          <span class="brand-name">CampaignAI</span>
+          <span class="brand-subtitle">AI-assisted campaign workspace</span>
         </div>
       </div>
 
@@ -91,9 +91,9 @@
     <div class="auth-card register-card">
       <div class="card-header">
         <p class="card-kicker">Create account</p>
-        <h2>Build your team space</h2>
+        <h2>Build your campaign space</h2>
         <p class="card-copy">
-          Add your details, secure the workspace, and start your first campaign setup.
+          Add your details, save your brand profile, and start your first campaign setup.
         </p>
       </div>
 
@@ -125,9 +125,45 @@
           <span>Work email</span>
           <div class="field-shell">
             <span class="material-symbols-outlined">mail</span>
-            <input class="field-input" placeholder="name@enterprise.com" type="email" [(ngModel)]="email" name="email" required autocomplete="email" />
+            <input class="field-input" placeholder="name@business.com" type="email" [(ngModel)]="email" name="email" required autocomplete="email" />
           </div>
         </label>
+
+        <div class="field-grid">
+          <label class="field">
+            <span>Primary offer</span>
+            <div class="field-shell">
+              <span class="material-symbols-outlined">sell</span>
+              <input class="field-input" placeholder="Spring booking discount" type="text" [(ngModel)]="primaryOffer" name="primaryOffer" />
+            </div>
+          </label>
+
+          <label class="field">
+            <span>Brand voice</span>
+            <div class="field-shell">
+              <span class="material-symbols-outlined">record_voice_over</span>
+              <input class="field-input" placeholder="Clear, practical, and trustworthy" type="text" [(ngModel)]="brandVoice" name="brandVoice" />
+            </div>
+          </label>
+        </div>
+
+        <label class="field">
+          <span>Audience description</span>
+          <div class="field-shell textarea-shell">
+            <span class="material-symbols-outlined">groups</span>
+            <textarea class="field-input field-textarea" placeholder="Local business customers who need quick answers and simple offers" [(ngModel)]="audienceDescription" name="audienceDescription"></textarea>
+          </div>
+        </label>
+
+        <div class="field">
+          <span>Preferred channels</span>
+          <div class="channel-row">
+            <button type="button" class="channel-chip" [class.active]="preferredChannels.includes('email')" (click)="togglePreferredChannel('email')">Email</button>
+            <button type="button" class="channel-chip" [class.active]="preferredChannels.includes('sms')" (click)="togglePreferredChannel('sms')">SMS</button>
+            <button type="button" class="channel-chip" [class.active]="preferredChannels.includes('social')" (click)="togglePreferredChannel('social')">Social</button>
+            <button type="button" class="channel-chip" [class.active]="preferredChannels.includes('ads')" (click)="togglePreferredChannel('ads')">Ads</button>
+          </div>
+        </div>
 
         <div class="field-grid">
           <label class="field">
@@ -164,7 +200,7 @@
 
         <button class="primary-button" type="submit" [disabled]="loading">
           <ng-container *ngIf="!loading && !success">
-            <span>Create account</span>
+            <span>Create workspace</span>
             <span class="material-symbols-outlined">arrow_forward</span>
           </ng-container>
 
@@ -190,7 +226,7 @@
             <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
             <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
           </svg>
-          <span>Google Workspace</span>
+          <span>Google sign-in</span>
         </button>
       </form>
     </div>

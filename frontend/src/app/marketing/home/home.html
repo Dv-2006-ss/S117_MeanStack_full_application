@@ -1,0 +1,110 @@
+<section class="home-page">
+  <header class="hero">
+    <nav class="hero-nav">
+      <div class="brand-lockup">
+        <div class="brand-mark">C</div>
+        <div>
+          <p class="brand-name">CampaignAI</p>
+          <p class="brand-tag">AI-assisted campaigns for small teams</p>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a routerLink="/login" class="nav-link">Log in</a>
+        <button type="button" class="nav-cta" (click)="startTrial()">Join the waitlist</button>
+      </div>
+    </nav>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Campaigns without the agency overhead</p>
+        <h1>Create smarter campaigns. Launch faster.</h1>
+        <p class="hero-description">
+          CampaignAI helps small businesses turn one campaign brief into email, SMS, social, ad, and landing-page
+          assets, then launch the channels that are ready right away.
+        </p>
+
+        <div class="hero-buttons">
+          <button type="button" class="primary" (click)="startTrial()">Reserve my spot</button>
+          <button type="button" class="secondary" (click)="openApp()">See the workspace</button>
+        </div>
+
+        <div class="proof-row">
+          <span *ngFor="let point of proofPoints">{{ point }}</span>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div class="panel-window">
+          <div class="panel-header">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="panel-content">
+            <p class="panel-label">Sample launch brief</p>
+            <h2>Spring offer campaign</h2>
+            <p>Goal: drive bookings for a local service business with one email and one reminder SMS.</p>
+
+            <div class="panel-grid">
+              <article>
+                <span>Email</span>
+                <strong>Subject + offer story</strong>
+              </article>
+              <article>
+                <span>SMS</span>
+                <strong>Reminder + CTA</strong>
+              </article>
+              <article>
+                <span>Ads</span>
+                <strong>3 headlines + body copy</strong>
+              </article>
+              <article>
+                <span>Landing page</span>
+                <strong>Headline + section outline</strong>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="feature-section">
+    <div class="section-heading">
+      <p class="eyebrow">Why CampaignAI</p>
+      <h2>Made for owners and small teams who need campaigns to move.</h2>
+    </div>
+
+    <div class="feature-grid">
+      <article class="feature-card" *ngFor="let feature of featureCards">
+        <h3>{{ feature.title }}</h3>
+        <p>{{ feature.copy }}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="workflow-section">
+    <div class="section-heading narrow">
+      <p class="eyebrow">How it works</p>
+      <h2>From brief to launch in one workflow.</h2>
+    </div>
+
+    <div class="workflow-list">
+      <article *ngFor="let step of workflowSteps; let i = index">
+        <span>0{{ i + 1 }}</span>
+        <p>{{ step }}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div>
+      <p class="eyebrow">Pre-launch access</p>
+      <h2>Join the CampaignAI waitlist.</h2>
+      <p>Get early access, launch updates, and a chance to shape the product roadmap.</p>
+    </div>
+    <button type="button" class="primary" (click)="startTrial()">Reserve my spot</button>
+  </section>
+</section>

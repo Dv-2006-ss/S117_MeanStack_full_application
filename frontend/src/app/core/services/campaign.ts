@@ -1,4 +1,4 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
@@ -19,16 +19,64 @@ export interface CampaignHistory {
   createdAt?: string;
 }
 
+export interface GeneratedOutputs {
+  email: {
+    subject: string;
+    body: string;
+  };
+  sms: {
+    message: string;
+  };
+  social: {
+    posts: string[];
+  };
+  ads: {
+    headlines: string[];
+    body: string;
+  };
+  landingPage: {
+    headline: string;
+    subhead: string;
+    cta: string;
+    sections: string[];
+  };
+}
+
 export interface Campaign {
   _id?: string;
   id?: string;
   name: string;
+  goal?: string;
   subject?: string;
   product?: string;
   offer?: string;
+  cta?: string;
+  selectedChannels?: string[];
+  sourceDataset?: {
+    id?: string;
+    name: string;
+    customerCount?: number;
+  };
+  sourceSegment?: string;
   blocks?: EmailBlock[];
   htmlContent?: string;
   message?: string;
+  targetAudience?: any[];
+  status?: string;
+  scheduledAt?: string;
+  sentCount?: number;
+  generatedOutputs?: GeneratedOutputs;
+}
+
+export interface CampaignOverview {
+  totalCampaigns: number;
+  draftCount: number;
+  scheduledCount: number;
+  sentCount: number;
+  audienceReached: number;
+  activeDatasets: number;
+  nextRecommendedAction: string;
+  recentCampaigns: Campaign[];
 }
 
 export interface EmailCampaignPayload {
@@ -44,6 +92,8 @@ export interface ApiResponse<T> {
   data?: T;
   campaign?: T;
   history?: T;
+  overview?: T;
+  generatedOutputs?: T;
   message?: string;
 }
 
@@ -89,6 +139,18 @@ export class CampaignService {
 
   saveCampaign(data: Campaign): Observable<ApiResponse<Campaign>> {
     return this.http.post<ApiResponse<Campaign>>(this.apiUrl, data, { headers: this.getHeaders() });
+  }
+
+  generateCampaign(data: Partial<Campaign>): Observable<ApiResponse<GeneratedOutputs>> {
+    return this.http.post<ApiResponse<GeneratedOutputs>>(`${this.apiUrl}/generate`, data, { headers: this.getHeaders() });
+  }
+
+  getOverview(): Observable<ApiResponse<CampaignOverview>> {
+    return this.http.get<ApiResponse<CampaignOverview>>(`${this.apiUrl}/overview`, { headers: this.getHeaders() });
+  }
+
+  sendCampaign(id: string, payload: Partial<Campaign>): Observable<ApiResponse<Campaign>> {
+    return this.http.post<ApiResponse<Campaign>>(`${this.apiUrl}/send/${id}`, payload, { headers: this.getHeaders() });
   }
 
   // ================= ENDPOINTS FOR JSON/TEMPLATE DRIVEN EMAILS =================

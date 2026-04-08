@@ -275,6 +275,18 @@
   box-shadow: 0 10px 24px rgba(108, 88, 59, 0.14);
 }
 
+.brand-glyph {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 0.9rem;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #7d9160 0%, #95a86b 100%);
+  color: #fff9f0;
+  font-weight: 700;
+  box-shadow: 0 10px 24px rgba(108, 88, 59, 0.14);
+}
+
 .brand-name {
   display: block;
   font-size: 1.1rem;
@@ -403,6 +415,40 @@
 
 .field-input::placeholder {
   color: #9d8f77;
+}
+
+.textarea-shell {
+  align-items: flex-start;
+  padding-top: 0.85rem;
+  min-height: 6.5rem;
+}
+
+.field-textarea {
+  width: 100% !important;
+  min-height: 4.5rem;
+  resize: vertical;
+}
+
+.channel-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.channel-chip {
+  border: 1px solid rgba(133, 117, 80, 0.16);
+  background: #fffaf2;
+  color: var(--text-soft);
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.channel-chip.active {
+  background: #f7efdf;
+  border-color: rgba(151, 169, 107, 0.5);
+  color: var(--text-main);
 }
 
 .toggle-visibility {

@@ -2,11 +2,28 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+const serializeUser = (user) => ({
+  id: user._id,
+  name: user.name,
+  companyName: user.companyName,
+  email: user.email,
+  role: user.role,
+  timezone: user.timezone,
+  notifications: user.notifications,
+  brandProfile: user.brandProfile
+});
+
 
 // REGISTER
 exports.registerUser = async (req, res) => {
   try {
-    const { name, companyName, email, password } = req.body;
+    const {
+      name,
+      companyName,
+      email,
+      password,
+      brandProfile = {}
+    } = req.body;
 
     if (!name || !companyName || !email || !password)
       return res.status(400).json({ message: "All fields required" });
@@ -31,7 +48,15 @@ exports.registerUser = async (req, res) => {
       name,
       companyName,
       email: email.toLowerCase(),
-      password: hashedPassword
+      password: hashedPassword,
+      brandProfile: {
+        brandVoice: brandProfile.brandVoice || "Clear, practical, and trustworthy",
+        primaryOffer: brandProfile.primaryOffer || "",
+        audienceDescription: brandProfile.audienceDescription || "",
+        preferredChannels: Array.isArray(brandProfile.preferredChannels) && brandProfile.preferredChannels.length
+          ? brandProfile.preferredChannels
+          : ["email", "sms"]
+      }
     });
 
     const token = jwt.sign(
@@ -44,14 +69,14 @@ exports.registerUser = async (req, res) => {
     const emailService = require("../services/email.service");
     emailService.sendEmail({
       to: newUser.email,
-      subject: "Welcome to Velox - Your Modern Marketing Platform",
+      subject: "Welcome to CampaignAI",
       html: `
-        <div style="font-family: Arial, sans-serif; background: #0f0a18; color: #f8fafc; padding: 40px; border-radius: 12px;">
-          <h1 style="color: #5b13ec;">Welcome to Velox, ${newUser.name}!</h1>
+        <div style="font-family: Arial, sans-serif; background: #09111f; color: #f8fafc; padding: 40px; border-radius: 12px;">
+          <h1 style="color: #38bdf8;">Welcome to CampaignAI, ${newUser.name}!</h1>
           <p>Your account for <strong>${newUser.companyName}</strong> has been successfully created.</p>
-          <p>Velox is designed to help you build, track, and scale your marketing campaigns with ease using high-performance 3D morphism tools.</p>
+          <p>CampaignAI helps small teams create campaign drafts faster, stay on brand, and launch email and SMS work from one workspace.</p>
           <div style="margin: 30px 0;">
-            <a href="http://localhost:4203/login" style="background: #5b13ec; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold;">Log in to Your Dashboard</a>
+            <a href="http://localhost:4203/login" style="background: #0284c7; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold;">Open CampaignAI</a>
           </div>
           <p style="color: #94a3b8; font-size: 13px;">If you didn't create this account, please ignore this email.</p>
         </div>
@@ -62,7 +87,7 @@ exports.registerUser = async (req, res) => {
       success: true,
       message: "Registration successful",
       token,
-      user: newUser
+      user: serializeUser(newUser)
     });
 
   } catch (err) {
@@ -105,15 +130,7 @@ exports.loginUser = async (req, res) => {
       success: true,
       message: "Login successful",
       token,
-      user: {
-        id: user._id,
-        name: user.name,
-        companyName: user.companyName,
-        email: user.email,
-        role: user.role,
-        timezone: user.timezone,
-        notifications: user.notifications
-      }
+      user: serializeUser(user)
     });
 
   } catch (err) {
@@ -126,7 +143,7 @@ exports.loginUser = async (req, res) => {
 exports.updateProfile = async (req, res) => {
   try {
     const userId = req.user.id;
-    const { name, companyName, role, timezone } = req.body;
+    const { name, companyName, role, timezone, brandProfile } = req.body;
 
     const user = await User.findById(userId);
     if (!user) return res.status(404).json({ message: "User not found" });
@@ -145,20 +162,21 @@ exports.updateProfile = async (req, res) => {
     if (companyName) user.companyName = companyName;
     if (role) user.role = role;
     if (timezone) user.timezone = timezone;
+    if (brandProfile) {
+      user.brandProfile = {
+        ...user.brandProfile?.toObject?.(),
+        ...brandProfile,
+        preferredChannels: Array.isArray(brandProfile.preferredChannels) && brandProfile.preferredChannels.length
+          ? brandProfile.preferredChannels
+          : user.brandProfile?.preferredChannels || ["email", "sms"]
+      };
+    }
 
     await user.save();
 
     res.json({
       message: "Profile updated successfully",
-      user: {
-        id: user._id,
-        name: user.name,
-        companyName: user.companyName,
-        email: user.email,
-        role: user.role,
-        timezone: user.timezone,
-        notifications: user.notifications
-      }
+      user: serializeUser(user)
     });
   } catch (err) {
     console.error("UPDATE PROFILE ERROR", err);

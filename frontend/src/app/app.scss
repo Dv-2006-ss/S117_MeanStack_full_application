@@ -37,6 +37,21 @@
   padding: 24px;
 }
 
+.app-layout.public-layout {
+  height: auto;
+  min-height: 100vh;
+}
+
+.app-body.public-body {
+  display: block;
+  overflow: visible;
+}
+
+.app-main.public-main {
+  padding: 0;
+  overflow: visible;
+}
+
 .app-layout.auth-layout {
   background: none;
 }

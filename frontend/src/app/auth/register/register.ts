@@ -19,6 +19,10 @@ export class RegisterComponent {
   email = '';
   password = '';
   confirmPassword = '';
+  brandVoice = 'Clear, practical, and trustworthy';
+  primaryOffer = '';
+  audienceDescription = '';
+  preferredChannels: string[] = ['email', 'sms'];
   showPassword = false;
 
   message = '';
@@ -79,16 +83,25 @@ export class RegisterComponent {
       name: this.name,
       companyName: this.companyName,
       email: this.email,
-      password: this.password
+      password: this.password,
+      brandProfile: {
+        brandVoice: this.brandVoice,
+        primaryOffer: this.primaryOffer,
+        audienceDescription: this.audienceDescription,
+        preferredChannels: this.preferredChannels
+      }
     })
       .subscribe({
         next: (res) => {
           this.loading = false;
           this.success = true;
+          if (res.token && res.user) {
+            this.auth.loginSuccess(res.token, res.user);
+          }
           this.toast.show('Registration successful', 'success');
           
           setTimeout(() => {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/app/dashboard']);
           }, 1200);
         },
         error: (err) => {
@@ -112,7 +125,16 @@ export class RegisterComponent {
     this.router.navigate(['/login']);
   }
 
+  togglePreferredChannel(channel: string): void {
+    if (this.preferredChannels.includes(channel)) {
+      this.preferredChannels = this.preferredChannels.filter((entry) => entry !== channel);
+      return;
+    }
+
+    this.preferredChannels = [...this.preferredChannels, channel];
+  }
+
   showGoogleToast() {
-    this.toast.show('Google Workspace integration is currently in development!', 'info');
+    this.toast.show('Google sign-in is not part of the CampaignAI MVP yet.', 'info');
   }
 }

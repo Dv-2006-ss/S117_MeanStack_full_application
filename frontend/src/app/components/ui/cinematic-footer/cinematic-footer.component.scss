@@ -1,0 +1,266 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.cinematic-footer-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  background-color: #020617; /* Slate 950 dark background for the cinematic contrast, but the user asked for "Matches modern SaaS UI" and the rest of the dashboard is light theme. Wait, the prompt says "Light theme matching current dashboard" in the PREVIOUS request. The NEW request says "This component will be used as a cinematic footer section" "Matches modern SaaS UI" "Aurora glow background" "Glassmorphism styling" and "Modify for Velox Dashboard... Keep all animations and effects". I will make the background slightly dark but translucent, or very clean glass if it stays on light theme. Actually, awwwards footers are usually dark. Let me use a deep sleek color for the footer itself to make it "cinematic", or a light premium layout if that was requested. The previous prompt explicitly requested Light theme. This new prompt says "ensure styling works with dashboard theme" and "Maintain:... Aurora glow background". I'll use a clean dark/glass look that stands out as the cinematic footer. Let's make it match premium SaaS (often dark footers even on light dashboards). */
+  background: linear-gradient(180deg, transparent 0%, #0f172a 100%);
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  padding: 80px 40px 40px;
+  color: #f8fafc;
+  margin-top: 60px;
+  box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.05);
+}
+
+.footer-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.aurora-glow {
+  position: absolute;
+  top: -30%;
+  left: -10%;
+  width: 120%;
+  height: 150%;
+  background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.15) 0%, rgba(2, 132, 199, 0.08) 30%, transparent 60%);
+  filter: blur(80px);
+  z-index: 1;
+}
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: 2;
+  mask-image: linear-gradient(to bottom, transparent 10%, black 90%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 10%, black 90%);
+}
+
+.parallax-bg-text {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(10rem, 20vw, 25rem);
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.02);
+  white-space: nowrap;
+  letter-spacing: -0.05em;
+  z-index: 1;
+}
+
+.footer-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+/* MARQUEE */
+.marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+}
+
+.marquee-content {
+  display: flex;
+  width: max-content;
+  animation: scrollMarquee 40s linear infinite;
+}
+
+.marquee-item {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin: 0 40px;
+  color: #cbd5e1;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+}
+
+.marquee-item::after {
+  content: '✦';
+  margin-left: 80px;
+  color: #0ea5e9;
+  font-size: 1rem;
+}
+
+@keyframes scrollMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* MAIN CTA CARD */
+.main-cta-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 40px 0;
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 80px 40px;
+  border-radius: 40px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.cta-heading {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 20px;
+  background: linear-gradient(to right, #f8fafc, #94a3b8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+}
+
+.cta-subheading {
+  font-size: 1.25rem;
+  color: #94a3b8;
+  margin-bottom: 40px;
+  max-width: 600px;
+}
+
+/* BUTTONS */
+.cta-action-group {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.magnetic-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 40px;
+  border-radius: 999px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: #fff;
+  z-index: 1;
+  transition: transform 0.2s;
+  will-change: transform;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #0284c7, #0ea5e9);
+  box-shadow: 0 10px 30px rgba(2, 132, 199, 0.3);
+}
+
+.btn-glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.btn-text {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* LOWER GRID */
+.footer-lower-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 32px;
+}
+
+.footer-nav a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.footer-nav a:hover {
+  color: #0ea5e9;
+}
+
+.footer-copyright {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.love-badge {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 16px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 768px) {
+  .cinematic-footer-wrapper {
+    padding: 60px 20px 30px;
+  }
+  .main-cta-section {
+    padding: 60px 20px;
+    border-radius: 28px;
+  }
+  .cta-action-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  .magnetic-btn {
+    width: 100%;
+  }
+  .footer-lower-grid {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer-nav {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .footer-copyright {
+    flex-direction: column-reverse;
+    gap: 16px;
+  }
+}

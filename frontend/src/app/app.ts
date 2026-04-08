@@ -39,4 +39,8 @@ export class AppComponent {
   isAuthRoute(): boolean {
     return this.currentUrl.startsWith('/login') || this.currentUrl.startsWith('/register');
   }
+
+  isAppRoute(): boolean {
+    return this.currentUrl.startsWith('/app');
+  }
 }

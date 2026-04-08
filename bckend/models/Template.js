@@ -7,6 +7,18 @@ const templateSchema = new mongoose.Schema({
     required:true
   },
   name:String,
+  description: {
+    type: String,
+    default: ""
+  },
+  goal: {
+    type: String,
+    default: "promote-an-offer"
+  },
+  channel: {
+    type: String,
+    default: "email"
+  },
   blocks:Array
 },{timestamps:true});
 

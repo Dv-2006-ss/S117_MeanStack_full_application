@@ -1,168 +1,97 @@
-<section class="morphism-dashboard">
-  <div class="ambient-blur ambient-top"></div>
-  <div class="ambient-blur ambient-right"></div>
-  <div class="ambient-blur ambient-bottom"></div>
-  <div class="dashboard-mesh"></div>
-
-  <div class="hero-marquee">
-    <span>VELox PRODUCT STORY</span>
-    <span>3D SCROLL DASHBOARD</span>
-    <span>WARM GLASS MORPHISM</span>
-    <span>HERO BENEFITS FIRST</span>
-  </div>
-
-  <section class="hero-shell glass-surface" [style.transform]="heroTransform()">
-    <div class="hero-copy">
-      <p class="hero-kicker">VELox CAMPAIGN ENGINE</p>
-      <h1>
-        Your dashboard now feels like
-        <span>a premium product website.</span>
-      </h1>
-      <p class="hero-description">
-        Inspired by editorial hero pages, this redesign leads with the product, explains the story behind it, and
-        wraps the whole experience in layered 3D scroll motion with premium glass morphism.
+<section class="dashboard-page">
+  <header class="dashboard-hero">
+    <div>
+      <p class="eyebrow">CampaignAI workspace</p>
+      <h1>Welcome back, {{ userName }}.</h1>
+      <p class="hero-copy">
+        {{ companyName }} is ready to plan, draft, and launch campaigns from one workspace.
       </p>
+    </div>
 
-      <div class="hero-pill-row">
-        <span class="hero-pill" *ngFor="let pill of heroPills">{{ pill }}</span>
-      </div>
+    <div class="hero-actions">
+      <button type="button" class="primary" (click)="handleAction('campaign')">Create campaign</button>
+      <button type="button" class="secondary" (click)="handleAction('audience')">Import audience</button>
+    </div>
+  </header>
 
-      <div class="hero-actions">
-        <button class="hero-cta" (click)="onBuildClick()">Launch Campaign Builder</button>
+  <section class="stats-grid" *ngIf="!loading; else loadingState">
+    <article class="stat-card">
+      <span>Total campaigns</span>
+      <strong>{{ overview.totalCampaigns }}</strong>
+    </article>
+    <article class="stat-card">
+      <span>Drafts</span>
+      <strong>{{ overview.draftCount }}</strong>
+    </article>
+    <article class="stat-card">
+      <span>Scheduled</span>
+      <strong>{{ overview.scheduledCount }}</strong>
+    </article>
+    <article class="stat-card">
+      <span>Audience reached</span>
+      <strong>{{ overview.audienceReached }}</strong>
+    </article>
+  </section>
 
-        <div class="hero-owner glass-chip">
-          <span class="owner-label">Workspace owner</span>
-          <strong>{{ userName }}</strong>
+  <ng-template #loadingState>
+    <section class="stats-grid">
+      <article class="stat-card loading-card" *ngFor="let item of [1, 2, 3, 4]"></article>
+    </section>
+  </ng-template>
+
+  <section class="content-grid">
+    <article class="workspace-card">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Next step</p>
+          <h2>What to do now</h2>
         </div>
       </div>
 
-      <div class="hero-proof-row">
-        <article
-          class="proof-chip glass-chip"
-          *ngFor="let stat of heroStats; let i = index"
-          [style.transform]="proofChipTransform(i)"
-        >
-          <span>{{ stat.label }}</span>
-          <strong>{{ stat.value }}</strong>
-        </article>
+      <div class="recommended-action">
+        <strong>{{ overview.nextRecommendedAction }}</strong>
+        <p>Keep your datasets, brief, and generated outputs connected so launching stays lightweight.</p>
       </div>
-    </div>
 
-    <div class="hero-stage">
-      <div class="stage-aura"></div>
-      <div class="stage-grid"></div>
-      <div class="product-shadow"></div>
+      <div class="action-list">
+        <button type="button" class="action-card" *ngFor="let card of quickActions" (click)="handleAction(card.action)">
+          <span>{{ card.label }}</span>
+          <p>{{ card.copy }}</p>
+        </button>
+      </div>
+    </article>
 
-      <article class="product-core glass-card" [style.transform]="productCoreTransform()">
-        <p class="product-badge">Velox</p>
-        <h3>Campaign OS</h3>
-        <p class="product-copy">
-          Audience memory, message precision, and delivery rhythm inside one cinematic product surface.
-        </p>
-
-        <div class="product-specs">
-          <span>Audience</span>
-          <span>Templates</span>
-          <span>Automation</span>
+    <article class="workspace-card">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Recent campaigns</p>
+          <h2>Latest workspace activity</h2>
         </div>
-      </article>
+      </div>
 
-      <article
-        *ngFor="let panel of floatingPanels; let i = index"
-        [class]="'floating-panel glass-card panel-' + i"
-        [style.transform]="floatingPanelTransform(i)"
-      >
-        <p class="panel-label">{{ panel.label }}</p>
-        <h4>{{ panel.title }}</h4>
-        <p>{{ panel.copy }}</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="story-shell glass-surface" [style.transform]="surfaceTransform(180, 58, 72, 8, -2)">
-    <div class="section-heading">
-      <p class="eyebrow">WEBSITE HISTORY</p>
-      <h2>From scattered tools to one clear product story.</h2>
-      <p class="section-copy">
-        This section brings the brand history into the dashboard itself, so the page feels intentional like a hero-led
-        website instead of a collection of unrelated modules.
-      </p>
-    </div>
-
-    <div class="story-layout">
-      <article class="story-note glass-note">
-        <p class="note-label">Design direction</p>
-        <h3>Storytelling now lives inside the dashboard.</h3>
-        <p>
-          The first fold introduces the product. The next fold explains the journey. The next fold turns benefits into
-          premium objects. That sequence creates the same confidence a strong launch page does.
-        </p>
-      </article>
-
-      <div class="story-stack">
-        <article
-          class="story-card glass-card"
-          *ngFor="let moment of storyMoments; let i = index"
-          [style.transform]="storyCardTransform(i)"
-        >
-          <span class="story-phase">{{ moment.phase }}</span>
-          <h3>{{ moment.title }}</h3>
-          <p>{{ moment.copy }}</p>
-          <small>{{ moment.detail }}</small>
+      <div class="campaign-list" *ngIf="overview.recentCampaigns.length; else emptyState">
+        <article class="campaign-item" *ngFor="let campaign of overview.recentCampaigns">
+          <div>
+            <strong>{{ campaign.name }}</strong>
+            <p>{{ campaign.goal || 'Campaign brief' }} · {{ campaign.selectedChannels?.join(', ') || 'email' }}</p>
+          </div>
+          <span class="status-pill" [class.sent]="campaign.status === 'sent'" [class.scheduled]="campaign.status === 'scheduled'">
+            {{ campaign.status || 'draft' }}
+          </span>
         </article>
       </div>
-    </div>
+
+      <ng-template #emptyState>
+        <div class="empty-state">
+          <h3>No campaigns yet</h3>
+          <p>Import an audience or start a new campaign to see activity here.</p>
+        </div>
+      </ng-template>
+    </article>
   </section>
+  <app-cinematic-footer></app-cinematic-footer>
 
-  <section class="benefits-shell glass-surface" [style.transform]="surfaceTransform(460, 72, 82, 7, 2)">
-    <div class="section-heading compact">
-      <p class="eyebrow">HERO BENEFITS</p>
-      <h2>Benefits are shown like product highlights.</h2>
-      <p class="section-copy">
-        Instead of generic dashboard boxes, these cards feel like premium feature panels with depth, softness, and
-        stronger visual priority.
-      </p>
-    </div>
-
-    <div class="benefit-grid">
-      <article
-        class="benefit-card glass-card"
-        *ngFor="let benefit of benefitCards; let i = index"
-        [style.transform]="benefitCardTransform(i)"
-      >
-        <p class="benefit-tag">{{ benefit.tag }}</p>
-        <h3>{{ benefit.title }}</h3>
-        <p>{{ benefit.copy }}</p>
-
-        <ul class="benefit-points">
-          <li *ngFor="let point of benefit.points">{{ point }}</li>
-        </ul>
-      </article>
-    </div>
-  </section>
-
-  <section class="signal-shell" [style.transform]="surfaceTransform(760, 94, 96, 6, -1)">
-    <div class="signal-board glass-surface">
-      <div class="section-heading compact">
-        <p class="eyebrow">LIVE PRODUCT FEEL</p>
-        <h2>Readable signals still stay front and center.</h2>
-        <p class="section-copy">
-          The new dashboard still behaves like a working product. Metrics, momentum, and next action remain clear even
-          inside the new 3D glass system.
-        </p>
-      </div>
-
-      <div class="signal-grid">
-        <article
-          class="signal-card glass-card"
-          *ngFor="let signal of liveSignals; let i = index"
-          [style.transform]="signalCardTransform(i)"
-        >
-          <span class="signal-label">{{ signal.label }}</span>
-          <strong class="signal-value">{{ signal.value }}</strong>
-          <p>{{ signal.copy }}</p>
-        </article>
-      </div>
-    </div>
-  </section>
+    <button type="button" class="back-to-top-btn" (click)="scrollToTop()" [class.visible]="showBackToTop">
+      ↑
+    </button>
 </section>

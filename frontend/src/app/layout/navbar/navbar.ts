@@ -47,6 +47,11 @@ export class NavbarComponent {
     this.router.navigate(['/login']);
   }
 
+  openSettings(tab = 'profile') {
+    this.closeDropdown();
+    this.router.navigate(['/app/settings'], { queryParams: { tab } });
+  }
+
   toggleDropdown(event: Event) {
     event.stopPropagation();
     this.isDropdownOpen = !this.isDropdownOpen;

@@ -1,148 +1,42 @@
-<h2 class="page-title">Campaign Engine</h2>
-
-<!-- ================= CREATE ================= -->
-
-<div class="section">
-
-  <h3>Create Campaign</h3>
-
-  <div class="dataset-grid">
-
-    <div class="dataset-card" *ngFor="let d of datasets">
-
-      <div class="dataset-name">
-        {{d.name}}
-      </div>
-
-      <button class="btn-primary" (click)="create(d)">
-        Create Campaign
-      </button>
-
+<section class="section">
+  <div class="header-section">
+    <div>
+      <h2 class="page-title">Campaign workspace</h2>
+      <p class="page-subtitle">Review drafts, scheduled campaigns, and recent launches from one list.</p>
     </div>
-
+    <button class="btn-primary" type="button" (click)="createCampaign()">New Campaign</button>
   </div>
-
-</div>
-
-<!-- ================= HISTORY ================= -->
-
-<div class="section">
-
-  <h3>Campaign History</h3>
 
   <div class="table-wrapper">
     <table class="pro-table">
       <thead>
         <tr>
-          <th>Campaign Name</th>
-          <th>Type</th>
+          <th>Name</th>
+          <th>Goal</th>
+          <th>Channels</th>
           <th>Status</th>
-          <th>Date & Time</th>
+          <th>Audience</th>
         </tr>
       </thead>
       <tbody>
-        <!-- Branded Email Logo Loader -->
         <tr *ngIf="isLoading">
-            <td colspan="4">
-                <div class="branded-loader-cell">
-                    <app-email-loader></app-email-loader>
-                    <p class="loader-status">Fetching your campaign history...</p>
-                </div>
-            </td>
+          <td colspan="5" style="text-align: center; padding: 28px;">Loading campaigns...</td>
         </tr>
 
-        <tr *ngIf="!isLoading && !campaignHistory.length">
-          <td colspan="4"
-            style="text-align: center; padding: 30px; color: #666; background: transparent; border: none;">No campaign
-            history yet.</td>
+        <tr *ngIf="!isLoading && !campaigns.length">
+          <td colspan="5" style="text-align: center; padding: 28px;">No campaigns yet. Create your first one to get started.</td>
         </tr>
-        <tr *ngFor="let h of campaignHistory">
-          <td>{{h.name}}</td>
+
+        <tr *ngFor="let campaign of campaigns">
+          <td>{{ campaign.name }}</td>
+          <td>{{ campaign.goal || 'Campaign brief' }}</td>
+          <td>{{ campaign.selectedChannels?.join(', ') || 'email' }}</td>
           <td>
-            <span class="type-badge" [ngClass]="h.type">{{h.type | uppercase}}</span>
+            <span class="status-badge" [ngClass]="campaign.status">{{ campaign.status || 'draft' }}</span>
           </td>
-          <td>
-            <span class="status-badge" [ngClass]="h.status">{{h.status}}</span>
-          </td>
-          <td>{{h.date | date:'short'}}</td>
+          <td>{{ campaign.targetAudience?.length || 0 }}</td>
         </tr>
       </tbody>
     </table>
   </div>
-
-</div>
-
-<!-- ================= QUEUE ================= -->
-
-<div class="section">
-
-  <h3>Campaign Queue</h3>
-
-  <div *ngIf="!campaigns.length" class="empty">
-    No campaigns yet.
-  </div>
-
-  <div class="campaign-grid">
-
-    <div class="campaign-card" *ngFor="let c of campaigns">
-
-      <!-- header -->
-
-      <div class="campaign-header">
-
-        <div class="title">
-          {{c.title}}
-        </div>
-
-        <span class="status" [ngClass]="c.status">
-
-          {{c.status}}
-
-        </span>
-
-      </div>
-
-      <!-- progress -->
-
-      <div class="progress-bar">
-
-        <div class="progress-fill" [style.width.%]="c.progress">
-
-        </div>
-
-      </div>
-
-      <div class="progress-text">
-
-        {{c.delivered}} / {{c.total}}
-        ({{c.progress}}%)
-
-      </div>
-
-      <!-- controls -->
-
-      <div class="controls">
-
-        <button class="btn" (click)="start(c.id)">
-          Start
-        </button>
-
-        <button class="btn" (click)="pause(c.id)">
-          Pause
-        </button>
-
-        <button class="btn" (click)="resume(c.id)">
-          Resume
-        </button>
-
-        <button class="btn-danger" (click)="cancel(c.id)">
-          Cancel
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
+</section>

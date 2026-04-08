@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #0b0f19; /* Deep dark blue */
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+.spacer {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+}
+
+.story-container {
+    width: 100%;
+}
+
+.scroll-trigger-section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, #1e293b 0%, #0b0f19 70%);
+}
+
+.scene-container {
+    position: relative;
+    width: 70vw;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+}
+
+.hero-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0; 
+    transform-origin: center center;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.layer-email {
+    opacity: 1; 
+    z-index: 3;
+}
+
+.layer-sms {
+    z-index: 2;
+    transform: scale(0.95);
+}
+
+.layer-laptop {
+    z-index: 1;
+    transform: scale(0.9);
+}
+
+.laptop-screen {
+    position: absolute;
+    /* Adjust these values to position the text over the generated laptop screen */
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+    opacity: 0;
+}
+
+.logo-text {
+    font-size: 6vw;
+    font-weight: 800;
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(79, 172, 254, 0.6);
+    letter-spacing: 2px;
+}
+
+.text-sections {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.text-step {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%) translateY(30px);
+    max-width: 400px;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+}
+
+.text-step h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    color: #f8fafc;
+}
+
+.step-email h2 {
+    color: #a78bfa; /* subtle purple */
+}
+
+.step-sms h2 {
+    color: #4ade80; /* neon green */
+}
+
+.step-laptop h2 {
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-step p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #94a3b8;
+}

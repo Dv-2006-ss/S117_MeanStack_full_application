@@ -93,6 +93,32 @@
                     </select>
                 </div>
 
+                <div class="form-grid" style="margin-top: 20px;">
+                    <div class="form-group">
+                        <label>Primary Offer</label>
+                        <input type="text" [(ngModel)]="userProfile.primaryOffer">
+                    </div>
+                    <div class="form-group">
+                        <label>Brand Voice</label>
+                        <input type="text" [(ngModel)]="userProfile.brandVoice">
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 20px;">
+                    <label>Audience Description</label>
+                    <textarea rows="4" [(ngModel)]="userProfile.audienceDescription"></textarea>
+                </div>
+
+                <div class="form-group" style="margin-top: 20px;">
+                    <label>Preferred Channels</label>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+                        <button class="btn btn-secondary" type="button" [class.btn-primary]="userProfile.preferredChannels.includes('email')" (click)="togglePreferredChannel('email')">Email</button>
+                        <button class="btn btn-secondary" type="button" [class.btn-primary]="userProfile.preferredChannels.includes('sms')" (click)="togglePreferredChannel('sms')">SMS</button>
+                        <button class="btn btn-secondary" type="button" [class.btn-primary]="userProfile.preferredChannels.includes('social')" (click)="togglePreferredChannel('social')">Social</button>
+                        <button class="btn btn-secondary" type="button" [class.btn-primary]="userProfile.preferredChannels.includes('ads')" (click)="togglePreferredChannel('ads')">Ads</button>
+                    </div>
+                </div>
+
                 <div class="settings-actions">
                     <button class="btn btn-primary" (click)="saveProfile()" [disabled]="isSaving">
                         {{ isSaving ? 'Saving...' : 'Save Profile Changes' }}

@@ -1,5 +1,24 @@
 const mongoose = require("mongoose");
 
+const brandProfileSchema = new mongoose.Schema({
+  brandVoice: {
+    type: String,
+    default: "Clear, practical, and trustworthy"
+  },
+  primaryOffer: {
+    type: String,
+    default: ""
+  },
+  audienceDescription: {
+    type: String,
+    default: ""
+  },
+  preferredChannels: {
+    type: [String],
+    default: ["email", "sms"]
+  }
+}, { _id: false });
+
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -32,6 +51,10 @@ const UserSchema = new mongoose.Schema({
     emailAlerts: { type: Boolean, default: true },
     smsAlerts: { type: Boolean, default: false },
     marketingUpdates: { type: Boolean, default: true }
+  },
+  brandProfile: {
+    type: brandProfileSchema,
+    default: () => ({})
   }
 }, { timestamps: true });
 

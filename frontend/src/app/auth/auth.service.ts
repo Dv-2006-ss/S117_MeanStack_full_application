@@ -13,6 +13,12 @@ export interface User {
   companyName?: string;
   timezone?: string;
   notifications?: any;
+  brandProfile?: {
+    brandVoice: string;
+    primaryOffer: string;
+    audienceDescription: string;
+    preferredChannels: string[];
+  };
 }
 
 export interface AuthResponse {

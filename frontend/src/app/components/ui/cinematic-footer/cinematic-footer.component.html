@@ -1,0 +1,45 @@
+<section class="cinematic-footer-wrapper" #footerContainer>
+  <div class="footer-bg">
+    <div class="aurora-glow"></div>
+    <div class="grid-overlay"></div>
+    <div class="parallax-bg-text" #parallaxText>VELOX</div>
+  </div>
+
+  <div class="footer-content">
+    <div class="marquee-wrapper footer-reveal-item">
+      <div class="marquee-content" #marqueeInner>
+        <span class="marquee-item" *ngFor="let item of marqueeContent">{{ item }}</span>
+        <span class="marquee-item" *ngFor="let item of marqueeContent" aria-hidden="true">{{ item }}</span>
+      </div>
+    </div>
+
+    <div class="main-cta-section footer-reveal-item">
+      <h2 class="cta-heading">Ready to launch your next campaign?</h2>
+      <p class="cta-subheading">Join the future of marketing automation and scale your reach.</p>
+      
+      <div class="cta-action-group">
+        <button class="magnetic-btn btn-primary" #magneticBtnTarget1 (click)="handleAction('campaign')">
+          <span class="btn-text">Create Campaign</span>
+          <span class="btn-glow"></span>
+        </button>
+        <button class="magnetic-btn btn-glass" #magneticBtnTarget2 (click)="handleAction('dataset')">
+          <span class="btn-text">Import Dataset</span>
+          <span class="btn-border"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="footer-lower-grid footer-reveal-item">
+      <nav class="footer-nav">
+        <a href="javascript:void(0)">Privacy Policy</a>
+        <a href="javascript:void(0)">Terms</a>
+        <a href="javascript:void(0)">Support</a>
+      </nav>
+      
+      <div class="footer-copyright">
+        <span>© 2026 Velox. All rights reserved.</span>
+        <span class="love-badge">Crafted with ❤️ by Velox</span>
+      </div>
+    </div>
+  </div>
+</section>

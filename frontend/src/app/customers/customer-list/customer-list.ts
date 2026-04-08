@@ -548,7 +548,7 @@ export class CustomerListComponent implements OnInit {
       return;
     }
 
-    this.router.navigate(['/campaigns-form'], {
+    this.router.navigate(['/app/campaigns/new'], {
       state: { dataset }
     });
   }

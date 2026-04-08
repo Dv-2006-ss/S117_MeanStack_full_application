@@ -8,11 +8,15 @@ const {
     deleteCampaign,
     sendCampaign,
     createEmailCampaign,
+    generateCampaignOutputs,
+    getCampaignOverview,
     getCampaignHistory,
     saveCampaignHistory,
     deleteCampaignHistory
 } = require("../controllers/campaignController");
 
+router.get("/overview", protect, getCampaignOverview);
+router.post("/generate", protect, generateCampaignOutputs);
 router.post("/", protect, createCampaign);
 router.get("/", protect, getCampaigns);
 router.delete("/:id", protect, deleteCampaign);

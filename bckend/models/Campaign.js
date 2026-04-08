@@ -1,5 +1,37 @@
 const mongoose = require("mongoose");
 
+const generatedOutputsSchema = new mongoose.Schema({
+  email: {
+    subject: String,
+    body: String
+  },
+  sms: {
+    message: String
+  },
+  social: {
+    posts: {
+      type: [String],
+      default: []
+    }
+  },
+  ads: {
+    headlines: {
+      type: [String],
+      default: []
+    },
+    body: String
+  },
+  landingPage: {
+    headline: String,
+    subhead: String,
+    cta: String,
+    sections: {
+      type: [String],
+      default: []
+    }
+  }
+}, { _id: false });
+
 const campaignSchema = new mongoose.Schema({
 
   owner: {
@@ -13,17 +45,42 @@ const campaignSchema = new mongoose.Schema({
     required: true
   },
 
+  goal: {
+    type: String,
+    default: "promote-an-offer"
+  },
+
   subject: {
     type: String,
-    required: true
+    default: ""
   },
 
   product: String,
   offer: String,
+  cta: {
+    type: String,
+    default: ""
+  },
 
   campaignType: {
     type: String,
     default: "email"
+  },
+
+  selectedChannels: {
+    type: [String],
+    default: ["email"]
+  },
+
+  sourceDataset: {
+    id: String,
+    name: String,
+    customerCount: Number
+  },
+
+  sourceSegment: {
+    type: String,
+    default: "All contacts"
   },
 
   template: {
@@ -32,6 +89,10 @@ const campaignSchema = new mongoose.Schema({
   },
 
   htmlContent: String,
+  generatedOutputs: {
+    type: generatedOutputsSchema,
+    default: () => ({})
+  },
 
   status: {
     type: String,

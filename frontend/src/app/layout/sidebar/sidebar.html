@@ -1,21 +1,25 @@
 <aside class="sidebar-container">
     <div class="sidebar-menu">
-        <p class="section-title">Core</p>
-        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
+        <p class="section-title">CampaignAI</p>
+        <a routerLink="/app/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
             <span class="material-symbols-outlined icon">dashboard</span>
             <span>Dashboard</span>
         </a>
-        <a routerLink="/customers" routerLinkActive="active" class="nav-item">
+        <a routerLink="/app/customers" routerLinkActive="active" class="nav-item">
             <span class="material-symbols-outlined icon">group</span>
-            <span>Customers</span>
+            <span>Audience</span>
         </a>
-        <a routerLink="/campaigns-form" routerLinkActive="active" class="nav-item">
+        <a routerLink="/app/campaigns" routerLinkActive="active" class="nav-item">
             <span class="material-symbols-outlined icon">campaign</span>
             <span>Campaigns</span>
         </a>
+        <a routerLink="/app/campaigns/new" routerLinkActive="active" class="nav-item">
+            <span class="material-symbols-outlined icon">auto_awesome</span>
+            <span>New Campaign</span>
+        </a>
 
         <p class="section-title">Tools</p>
-        <a routerLink="/templates" routerLinkActive="active" class="nav-item">
+        <a routerLink="/app/templates" routerLinkActive="active" class="nav-item">
             <span class="material-symbols-outlined icon">auto_awesome_mosaic</span>
             <span>Template Studio</span>
         </a>
@@ -30,16 +34,16 @@
     </div>
 
     <div class="sidebar-footer">
-        <a routerLink="/settings" class="nav-item mb-4">
+        <a routerLink="/app/settings" class="nav-item mb-4">
             <span class="material-symbols-outlined icon">settings</span>
             <span>Settings</span>
         </a>
         <div class="plan-card">
-            <p class="plan-name">Pro Plan</p>
+            <p class="plan-name">Launch Workspace</p>
             <div class="progress-bar">
                 <div class="fill"></div>
             </div>
-            <p class="plan-usage">12.4k / 20k records</p>
+            <p class="plan-usage">Email and SMS execution enabled</p>
         </div>
     </div>
 </aside>

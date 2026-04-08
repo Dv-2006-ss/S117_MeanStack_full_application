@@ -22,7 +22,11 @@ export class SettingsComponent implements OnInit {
         phone: '',
         company: '',
         role: 'Marketing Manager',
-        timezone: 'UTC+5:30 (India Standard Time)'
+        timezone: 'UTC+5:30 (India Standard Time)',
+        brandVoice: '',
+        primaryOffer: '',
+        audienceDescription: '',
+        preferredChannels: ['email', 'sms']
     };
 
     // Notification Preferences
@@ -61,6 +65,10 @@ export class SettingsComponent implements OnInit {
         this.userProfile.company = user.companyName || '';
         this.userProfile.role = user.role || 'Marketing Manager';
         this.userProfile.timezone = user.timezone || 'UTC+5:30 (India Standard Time)';
+        this.userProfile.brandVoice = user.brandProfile?.brandVoice || '';
+        this.userProfile.primaryOffer = user.brandProfile?.primaryOffer || '';
+        this.userProfile.audienceDescription = user.brandProfile?.audienceDescription || '';
+        this.userProfile.preferredChannels = user.brandProfile?.preferredChannels || ['email', 'sms'];
 
         if (user.notifications) {
             this.notifications = { ...this.notifications, ...user.notifications };
@@ -81,7 +89,13 @@ export class SettingsComponent implements OnInit {
             name: this.userProfile.name,
             companyName: this.userProfile.company,
             role: this.userProfile.role,
-            timezone: this.userProfile.timezone
+            timezone: this.userProfile.timezone,
+            brandProfile: {
+                brandVoice: this.userProfile.brandVoice,
+                primaryOffer: this.userProfile.primaryOffer,
+                audienceDescription: this.userProfile.audienceDescription,
+                preferredChannels: this.userProfile.preferredChannels
+            }
         }).subscribe({
             next: (res) => {
                 this.isSaving = false;
@@ -142,5 +156,14 @@ export class SettingsComponent implements OnInit {
                 this.toastService.show('Failed to update password: ' + (err.error?.message || err.message), 'error');
             }
         });
+    }
+
+    togglePreferredChannel(channel: string) {
+        if (this.userProfile.preferredChannels.includes(channel)) {
+            this.userProfile.preferredChannels = this.userProfile.preferredChannels.filter((entry) => entry !== channel);
+            return;
+        }
+
+        this.userProfile.preferredChannels = [...this.userProfile.preferredChannels, channel];
     }
 }

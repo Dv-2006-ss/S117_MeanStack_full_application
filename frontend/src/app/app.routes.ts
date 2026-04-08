@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard';
 import { LoginComponent } from './auth/login/login';
 import { RegisterComponent } from './auth/register/register';
+import { HomeComponent } from './marketing/home/home';
 import { CustomerListComponent } from './customers/customer-list/customer-list';
 import { CampaignFormComponent } from './campaigns/campaign-form/campaign-form';
 import { EmailBuilderComponent } from './campaigns/email-builder/email-builder';
@@ -14,27 +14,30 @@ import { SettingsComponent } from './settings/settings';
 import { TemplatesComponent } from './campaigns/templates/templates';
 export const routes: Routes = [
 
-  // default → dashboard
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '', component: HomeComponent },
 
   // public pages
-  { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 
   // protected pages
   {
-    path: 'customers',
+    path: 'app/dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'app/customers',
     component: CustomerListComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: 'campaigns',
+    path: 'app/campaigns',
     component: CampaignListComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: 'campaigns-form',
+    path: 'app/campaigns/new',
     component: CampaignFormComponent,
     canActivate: [AuthGuard]
   },
@@ -44,7 +47,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'templates',
+    path: 'app/templates',
     component: TemplatesComponent,
     canActivate: [AuthGuard]
   },
@@ -54,12 +57,12 @@ export const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'settings',
+    path: 'app/settings',
     component: SettingsComponent,
     canActivate: [AuthGuard]
   },
 
   // fallback
-  { path: '**', redirectTo: 'dashboard' }
+  { path: '**', redirectTo: '' }
 
 ];

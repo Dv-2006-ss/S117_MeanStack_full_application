@@ -63,7 +63,7 @@ export class LoginComponent {
           if (res.token && res.user) {
             this.toast.show('Login successful', 'success');
             
-            const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
+            const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/app/dashboard';
             this.router.navigateByUrl(returnUrl);
           } else {
             this.message = "Login failed: No credentials returned";
@@ -83,6 +83,6 @@ export class LoginComponent {
   }
 
   showGoogleToast() {
-    this.toast.show('Google Workspace integration is coming soon!', 'info');
+    this.toast.show('Google sign-in is not part of the CampaignAI MVP yet.', 'info');
   }
 }
